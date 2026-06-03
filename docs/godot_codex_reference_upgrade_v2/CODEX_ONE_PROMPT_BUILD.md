@@ -10,18 +10,22 @@ Read these files before editing:
 
 1. `docs/CODEX.md`
 2. `docs/godot_codex_reference_upgrade_v2/CODEX_COMPLETE_GAME_CONTRACT.md`
-3. `docs/godot_codex_reference_upgrade_v2/CODEX_BUILD_CONTRACT.md`
-4. `docs/godot_codex_reference_upgrade_v2/CODEX_RETRY_DEBUG_LOOP.md`
-5. `docs/godot_codex_reference_upgrade_v2/docs/24_exact_repository_layout.md`
-6. `docs/godot_codex_reference_upgrade_v2/docs/25_godot_class_contracts.md`
-7. `docs/godot_codex_reference_upgrade_v2/docs/26_cli_command_contract.md`
-8. `docs/godot_codex_reference_upgrade_v2/docs/27_network_payload_contracts.md`
-9. `docs/godot_codex_reference_upgrade_v2/docs/28_nakama_runtime_contract.md`
-10. `docs/godot_codex_reference_upgrade_v2/docs/33_testing_contract.md`
-11. `docs/godot_codex_reference_upgrade_v2/docs/34_bot_contracts.md`
-12. `docs/godot_codex_reference_upgrade_v2/docs/35_scene_ui_contracts.md`
-13. `docs/godot_codex_reference_upgrade_v2/CODEX_ACCEPTANCE_GATES.md`
-14. `docs/godot_codex_reference_upgrade_v2/CODEX_FAILURE_RECOVERY.md`
+3. `docs/godot_codex_reference_upgrade_v2/CODEX_CURRENT_REQUIRED_SCOPE.md`
+4. `docs/godot_codex_reference_upgrade_v2/CODEX_MULTIPLAYER_FRIEND_BOT_FILL.md`
+5. `docs/godot_codex_reference_upgrade_v2/CODEX_25_PLAYER_DEATHMATCH_MODE.md`
+6. `docs/godot_codex_reference_upgrade_v2/CODEX_ART_DIRECTION.md`
+7. `docs/godot_codex_reference_upgrade_v2/CODEX_BUILD_CONTRACT.md`
+8. `docs/godot_codex_reference_upgrade_v2/CODEX_RETRY_DEBUG_LOOP.md`
+9. `docs/godot_codex_reference_upgrade_v2/docs/24_exact_repository_layout.md`
+10. `docs/godot_codex_reference_upgrade_v2/docs/25_godot_class_contracts.md`
+11. `docs/godot_codex_reference_upgrade_v2/docs/26_cli_command_contract.md`
+12. `docs/godot_codex_reference_upgrade_v2/docs/27_network_payload_contracts.md`
+13. `docs/godot_codex_reference_upgrade_v2/docs/28_nakama_runtime_contract.md`
+14. `docs/godot_codex_reference_upgrade_v2/docs/33_testing_contract.md`
+15. `docs/godot_codex_reference_upgrade_v2/docs/34_bot_contracts.md`
+16. `docs/godot_codex_reference_upgrade_v2/docs/35_scene_ui_contracts.md`
+17. `docs/godot_codex_reference_upgrade_v2/CODEX_ACCEPTANCE_GATES.md`
+18. `docs/godot_codex_reference_upgrade_v2/CODEX_FAILURE_RECOVERY.md`
 
 Use `docs/godot_codex_reference_upgrade_v2/docs/30_first_30_codex_tasks.md` as the build order, but apply the complete-game scope in this file.
 
@@ -46,14 +50,15 @@ The finished repository must support this flow:
 1. launch game,
 2. load content,
 3. show main menu,
-4. start match,
-5. select or auto-assign hero,
-6. load arena,
-7. spawn player and bot teammates/enemies,
-8. play a full 3v3 team arena match,
-9. finish by score limit or timer,
-10. show victory/defeat result screen,
-11. allow restart or return to menu.
+4. choose 3v3 Team Arena or 25 Player Deathmatch,
+5. start match,
+6. select or auto-assign hero,
+7. load arena,
+8. spawn player, friends if connected, and bot-filled remaining slots,
+9. play a full selected-mode match,
+10. finish by score limit or timer,
+11. show victory/defeat or ranking result screen,
+12. allow restart or return to menu.
 
 ## Required game content
 
@@ -62,15 +67,16 @@ Implement at least:
 - 3 playable heroes,
 - 3 abilities per hero: basic attack, secondary skill, ultimate or high-impact skill,
 - 1 complete arena map with spawn points, obstacles, bounds, and objective/score positions,
-- 1 complete 3v3 team arena mode,
-- bot fill for all empty slots,
-- health, damage, cooldowns, deaths, respawn, score, timer, and match end,
-- HUD for health, cooldowns, score, timer, and match state,
-- main menu, loading/match start state, pause/escape menu, result screen,
-- simple but cohesive visual presentation using available assets or generated primitive/vector art,
+- 2 complete modes: `3v3_team_arena` and `25_player_deathmatch`,
+- bot fill for all empty slots in both modes,
+- friend-capable multiplayer path with bot fill,
+- health, damage, cooldowns, deaths, respawn, score, timer, ranking, and match end,
+- HUD for health, cooldowns, score/rank, timer, and match state,
+- main menu, mode select, loading/match start state, pause/escape menu, result screen,
+- simple but cohesive visual presentation following `CODEX_ART_DIRECTION.md`,
 - audio/VFX hooks where feasible, with safe no-asset fallbacks.
 
-Do not call required game content placeholder, mock, or prototype inside player-facing screens. Simple art is acceptable when it is consistent and functional.
+Do not call required game content placeholder, mock, or prototype inside player-facing screens. Simple art is acceptable when it is consistent, readable, and functional.
 
 ## Required technical systems
 
@@ -79,22 +85,23 @@ The complete game must include:
 - repository layout from the exact layout contract,
 - required autoloads configured or documented with exact `project.godot` entries,
 - typed GDScript core classes,
-- content JSON for heroes, abilities, map, mode, and bot profile,
+- content JSON for heroes, abilities, maps, modes, and bot profiles,
 - content loader and validator,
 - CLI command router,
 - network envelope, input frame, snapshot frame, and codec,
 - simulation state and fixed-tick simulation world,
-- movement, health, damage, cooldowns, abilities, deaths, respawns, scoring, and victory resolution,
+- movement, health, damage, cooldowns, abilities, deaths, respawns, team scoring, deathmatch ranking, and victory resolution,
 - authoritative match room with complete bot-filled local match support,
 - bots submitting the same `InputFrame` objects as human players,
 - local server transport abstraction,
+- friend join path via LAN/IP, room code, dev token, or local adapter,
 - handshake and input/snapshot message models,
 - client connection state machine,
 - input sampler,
 - snapshot presentation boundary,
 - HUD state facade,
 - local backend adapter compatible with the Nakama contract,
-- validation, parse, protocol, run-tests, and bot-soak commands where feasible,
+- validation, parse, protocol, run-tests, and bot-soak commands for both modes where feasible,
 - structured debug logs through `DebugBus`.
 
 ## Scope control
@@ -125,21 +132,21 @@ Work in this order. Do not skip ahead to visual polish before gameplay is comple
 3. Add `docs/PROJECT_LAYOUT_MAPPING.md` if any existing structure differs from the contract.
 4. Add `project.godot` if missing and configure the minimum runnable scene/autoloads.
 5. Add autoload scripts.
-6. Add real content JSON for 3 heroes, their abilities, one mode, one map, and one bot profile.
+6. Add real content JSON for 3 heroes, their abilities, both modes, one map, and bot profiles.
 7. Add content loader and validator.
 8. Add CLI command router and `validate-content` command.
 9. Add protocol models and codec.
 10. Add simulation state, clock, config, and entity registry.
-11. Add movement, health, damage, death, cooldown, respawn, scoring, and ability runtime.
+11. Add movement, health, damage, death, cooldown, respawn, team scoring, deathmatch ranking, and ability runtime.
 12. Add `SimulationWorld.step_tick()`.
-13. Add `MatchRoom` and complete bot-filled match lifecycle.
-14. Add bot perception/brain/input builder.
-15. Add `bot-soak` command.
-16. Add server transport adapter boundary.
+13. Add `MatchRoom` and complete bot-filled match lifecycle for both modes.
+14. Add bot perception/brain/input builder for team and deathmatch behavior.
+15. Add `bot-soak` command for both modes.
+16. Add server transport adapter and friend join boundary.
 17. Add handshake and input/snapshot message handling models.
-18. Add client match connection skeleton sufficient for local play.
+18. Add client match connection skeleton sufficient for local/friend play.
 19. Add input sampler and snapshot interpolation/presentation.
-20. Add main menu, HUD, pause menu, loading state, and result screen.
+20. Add main menu, mode select, HUD, pause menu, loading state, and result screen.
 21. Add local backend adapter/Nakama-compatible boundary.
 22. Add tests or command checks for implemented subsystems.
 23. Run all available validation commands.
@@ -152,10 +159,10 @@ A one-prompt attempt is successful only when these gates pass or are explicitly 
 ### Gate 1 - Complete game loop
 
 - Launch path exists.
-- Menu-to-match-to-result flow exists.
-- Player can start a match without manual editor work.
-- Bot-filled teams make the match playable.
-- Match ends by score limit or timer.
+- Menu-to-mode-select-to-match-to-result flow exists.
+- Player can start either required mode without manual editor work.
+- Bot-filled slots make both modes playable.
+- Matches end by score limit or timer.
 
 ### Gate 2 - Repository coherence
 
@@ -167,6 +174,7 @@ A one-prompt attempt is successful only when these gates pass or are explicitly 
 
 - Seed content loads from JSON.
 - At least 3 heroes and 9 abilities exist.
+- Both required modes exist as data.
 - Duplicate IDs fail validation.
 - Missing hero/ability/map/mode references fail validation.
 - `validate-content` exits non-zero on invalid content when CLI execution is available.
@@ -179,7 +187,7 @@ A one-prompt attempt is successful only when these gates pass or are explicitly 
 
 ### Gate 5 - Simulation
 
-- The server simulation owns authoritative position, health, cooldowns, damage, deaths, score, and match end.
+- The server simulation owns authoritative position, health, cooldowns, damage, deaths, score/rank, and match end.
 - `SimulationWorld.step_tick()` advances exactly one fixed tick.
 - Client presentation scripts do not decide authoritative outcomes.
 
@@ -187,19 +195,22 @@ A one-prompt attempt is successful only when these gates pass or are explicitly 
 
 - Bots submit `InputFrame` through the same path as players.
 - Bot difficulty is data-driven.
-- Bot-only local match can start, run, and finish headlessly when the runtime supports it.
+- Bot-only 3v3 and 25-player deathmatch can start, run, and finish headlessly when the runtime supports it.
 
-### Gate 7 - UI/playability
+### Gate 7 - UI/playability/art
 
 - Main menu exists.
+- Mode select exists.
 - HUD exists.
 - Pause/escape menu exists.
 - Result screen exists.
+- Heroes, abilities, VFX, arena, scoreboard/ranking, and screens follow `CODEX_ART_DIRECTION.md`.
 - The minimum player path does not require manual scene wiring after Codex finishes.
 
 ### Gate 8 - Multiplayer/backend boundary
 
 - Server transport is isolated behind an adapter.
+- Friend join path exists through LAN/IP, room code, dev token, or local adapter.
 - Handshake, join, input, ack, snapshot, event batch, and correction message models exist.
 - Gameplay code does not directly depend on a concrete socket implementation.
 - Local backend adapter follows the Nakama contract and does not pretend to be production integration.
@@ -208,7 +219,7 @@ A one-prompt attempt is successful only when these gates pass or are explicitly 
 
 - `DebugBus` exists.
 - Match ID, player ID, entity ID, server tick, and event type are included in relevant logs.
-- Bot soak output includes match count, errors, average duration, and failure summaries.
+- Bot soak output includes mode, match count, participant count, errors, average duration, and failure summaries.
 
 ### Gate 10 - Honest report
 
