@@ -1,7 +1,7 @@
 module arena-royale-nakama
 
-go 1.23.5
+go 1.22.4
 
-require github.com/heroiclabs/nakama-common v1.36.0
+require github.com/heroiclabs/nakama-common v1.32.0
 
-require google.golang.org/protobuf v1.36.4 // indirect
+require google.golang.org/protobuf v1.34.1 // indirect

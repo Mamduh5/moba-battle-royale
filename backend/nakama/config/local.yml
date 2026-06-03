@@ -1,4 +1,4 @@
-name: arena-royale-local
+name: arena-royale
 logger:
   level: DEBUG
 session:

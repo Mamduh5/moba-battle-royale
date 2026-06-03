@@ -5,12 +5,18 @@ services:
       POSTGRES_DB: nakama
       POSTGRES_USER: nakama
       POSTGRES_PASSWORD: local_nakama_password
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nakama -d nakama"]
+      interval: 2s
+      timeout: 5s
+      retries: 20
     ports:
       - "5432:5432"
   nakama:
     image: heroiclabs/nakama:3.22.0
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     entrypoint:
       - /bin/sh
       - -ecx

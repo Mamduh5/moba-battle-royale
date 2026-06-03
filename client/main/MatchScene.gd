@@ -18,6 +18,12 @@ func setup(map_def: MapDef, local_player_id: String) -> void:
 	_local_player_id = local_player_id
 	arena.setup(map_def)
 	binder.set_local_player_id(local_player_id)
+	if map_def != null:
+		var bounds := map_def.get_bounds_rect()
+		camera.limit_left = int(bounds.position.x)
+		camera.limit_top = int(bounds.position.y)
+		camera.limit_right = int(bounds.position.x + bounds.size.x)
+		camera.limit_bottom = int(bounds.position.y + bounds.size.y)
 
 func apply_snapshot(snapshot: SnapshotFrame) -> void:
 	if snapshot == null:

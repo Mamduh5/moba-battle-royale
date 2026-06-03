@@ -64,7 +64,10 @@ static func from_dict(data: Dictionary) -> InputFrame:
 	frame.aim_x = float(aim.get("x", data.get("aim_x", 1.0)))
 	frame.aim_y = float(aim.get("y", data.get("aim_y", 0.0)))
 	frame.buttons = data.get("buttons", {}).duplicate(true)
-	frame.cast_requests = data.get("cast_requests", []).duplicate(true)
+	frame.cast_requests.clear()
+	for request in data.get("cast_requests", []):
+		if typeof(request) == TYPE_DICTIONARY:
+			frame.cast_requests.append((request as Dictionary).duplicate(true))
 	return frame.normalized()
 
 static func _finite_or_zero(value: float) -> float:

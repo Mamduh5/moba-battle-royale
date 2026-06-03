@@ -10,6 +10,7 @@ var _match_room: MatchRoom = null
 var _match_client := MatchClient.new()
 var _match_scene: MatchScene = null
 var _hud: ArenaHUD = null
+var _ui_layer: CanvasLayer = null
 var _input_sampler := InputSampler.new()
 var _backend := LocalNakamaAdapter.new()
 var _sequence := 0
@@ -184,13 +185,16 @@ func _start_local_match(simulate_friend: bool) -> void:
 	_match_scene = load("res://scenes/client/MatchScene.tscn").instantiate()
 	_match_scene.setup(map, _local_player_id)
 	_screen_root.add_child(_match_scene)
+	_ui_layer = CanvasLayer.new()
+	_ui_layer.name = "MatchUiLayer"
+	_screen_root.add_child(_ui_layer)
 	_hud = load("res://scenes/ui/HUD.tscn").instantiate()
 	_hud.setup(_local_player_id, _selected_mode)
-	_screen_root.add_child(_hud)
-	_build_pause_overlay()
+	_ui_layer.add_child(_hud)
+	_build_pause_overlay(_ui_layer)
 	DebugBus.info("client", "match_started", {"match_id": match_id, "mode_id": _selected_mode, "room_code": room_code})
 
-func _build_pause_overlay() -> void:
+func _build_pause_overlay(parent: Node = null) -> void:
 	_pause_overlay = PanelContainer.new()
 	_pause_overlay.visible = false
 	_pause_overlay.anchor_left = 0.36
@@ -213,7 +217,10 @@ func _build_pause_overlay() -> void:
 	menu.text = "Return To Menu"
 	menu.pressed.connect(_show_main_menu)
 	box.add_child(menu)
-	_screen_root.add_child(_pause_overlay)
+	if parent == null:
+		_screen_root.add_child(_pause_overlay)
+	else:
+		parent.add_child(_pause_overlay)
 
 func _set_paused(value: bool) -> void:
 	_paused = value
@@ -307,4 +314,5 @@ func _clear_screen() -> void:
 		return
 	for child in _screen_root.get_children():
 		child.queue_free()
+	_ui_layer = null
 	_paused = false

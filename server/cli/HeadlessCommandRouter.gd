@@ -8,12 +8,17 @@ const BotSoakCommandScript := preload("res://tools/cli/BotSoakCommand.gd")
 const RunTestsCommandScript := preload("res://tools/cli/RunTestsCommand.gd")
 const ServerSmokeCommandScript := preload("res://tools/cli/ServerSmokeCommand.gd")
 const VisualSmokeCommandScript := preload("res://tools/cli/VisualSmokeCommand.gd")
+const RenderedUiAuditCommandScript := preload("res://tools/cli/RenderedUiAuditCommand.gd")
+const FriendSmokeCommandScript := preload("res://tools/cli/FriendSmokeCommand.gd")
 const ExportServerCommandScript := preload("res://tools/cli/ExportServerCommand.gd")
 
 func _init() -> void:
 	var args := OS.get_cmdline_user_args()
 	var parsed := _parse_args(args)
-	var exit_code := _dispatch(parsed)
+	call_deferred("_run_deferred", parsed)
+
+func _run_deferred(parsed: Dictionary) -> void:
+	var exit_code := await _dispatch(parsed)
 	quit(exit_code)
 
 func _parse_args(args: PackedStringArray) -> Dictionary:
@@ -59,8 +64,12 @@ func _dispatch(parsed: Dictionary) -> int:
 			return ServerSmokeCommandScript.new().run(parsed, content_db)
 		"visual-smoke":
 			return VisualSmokeCommandScript.new().run(parsed, content_db)
+		"rendered-ui-audit":
+			return await RenderedUiAuditCommandScript.new().run_async(parsed, content_db, self)
+		"friend-smoke":
+			return FriendSmokeCommandScript.new().run(parsed, content_db)
 		"export-server":
 			return ExportServerCommandScript.new().run(parsed)
 		_:
-			printerr("Unknown command. Use --cmd validate-content|protocol-check|bot-soak|run-tests|server-smoke|visual-smoke|export-server")
+			printerr("Unknown command. Use --cmd validate-content|protocol-check|bot-soak|run-tests|server-smoke|visual-smoke|rendered-ui-audit|friend-smoke|export-server")
 			return ProtocolConstantsScript.EXIT_INVALID_ARGUMENTS
