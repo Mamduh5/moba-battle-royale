@@ -16,6 +16,16 @@ docs/godot_codex_reference/
 
 The legacy folder was removed. Do not recreate it and do not use old v1 docs as the build contract.
 
+## For the completion rescue pass
+
+The previous challenge run produced a useful scaffold but failed strict completion gates. Before rebuilding anything, read:
+
+```text
+docs/godot_codex_reference_upgrade_v2/CODEX_COMPLETION_RESCUE_PASS.md
+```
+
+The rescue pass must fix failed gates in the existing project: rendered UI QA, real friend-capable transport, live backend validation where Docker is available, and strict final gate reporting.
+
 ## For the single-prompt complete-game challenge
 
 Start here:
