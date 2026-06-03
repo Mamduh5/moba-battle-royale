@@ -48,10 +48,6 @@ func _capture_resolution(size: Vector2i) -> void:
 
 func _capture_main_menu(size: Vector2i) -> void:
 	var stage := _make_stage(size)
-	var bg := ColorRect.new()
-	bg.color = Color(0.04, 0.10, 0.12)
-	bg.set_anchors_preset(Control.PRESET_FULL_RECT)
-	stage.add_child(bg)
 	var menu := MainMenuScreen.new()
 	menu.size = Vector2(size)
 	stage.add_child(menu)
@@ -61,7 +57,10 @@ func _capture_main_menu(size: Vector2i) -> void:
 
 func _capture_mode_select(size: Vector2i) -> void:
 	var stage := _make_stage(size)
-	_build_mode_select(stage)
+	var screen := ModeSelectScreen.new()
+	screen.setup(_content_db, GameConstants.MODE_TEAM_ARENA, GameConstants.DEFAULT_HERO)
+	screen.size = Vector2(size)
+	stage.add_child(screen)
 	await _settle_frames(4)
 	_audit_controls(stage, "mode_select", size)
 	await _save_capture(stage, size, "mode_select")
@@ -109,7 +108,10 @@ func _capture_match(size: Vector2i, mode_id: String, prefix: String) -> void:
 	if not room.is_finished():
 		_audit_errors.append("%s did not finish for rendered result capture" % mode_id)
 	var result_stage := _make_stage(size)
-	_build_result_screen(result_stage, room.build_result(), mode_id)
+	var result_screen := ResultScreen.new()
+	result_screen.setup(room.build_result(), mode_id, GameConstants.LOCAL_PLAYER_ID, GameConstants.TEAM_A)
+	result_screen.size = Vector2(size)
+	result_stage.add_child(result_screen)
 	await _settle_frames(4)
 	_audit_controls(result_stage, "%s_result" % prefix, size)
 	await _save_capture(result_stage, size, "%s_result" % prefix)
@@ -158,6 +160,8 @@ func _audit_controls(root: Node, label: String, size: Vector2i) -> void:
 	var viewport_rect := Rect2(Vector2.ZERO, Vector2(size))
 	for control in controls:
 		if not control.visible:
+			continue
+		if _is_decorative_control(control):
 			continue
 		var rect := control.get_global_rect()
 		if rect.size.x < 1.0 or rect.size.y < 1.0:
@@ -304,7 +308,7 @@ func _result_top_lines(rankings: Array) -> String:
 func _audit_sibling_overlaps(node: Node, label: String) -> void:
 	var visible_controls: Array[Control] = []
 	for child in node.get_children():
-		if child is Control and child.visible and not _is_background_control(child):
+		if child is Control and child.visible and not _is_background_control(child) and not _is_decorative_control(child):
 			visible_controls.append(child)
 	for i in range(visible_controls.size()):
 		for j in range(i + 1, visible_controls.size()):
@@ -346,10 +350,21 @@ func _audit_gameplay_snapshot(snapshot: SnapshotFrame, mode_id: String) -> void:
 		_audit_errors.append("deathmatch: too few live participants visible/readable, count=%d" % alive_count)
 
 func _is_background_control(control: Control) -> bool:
-	return control is ColorRect and control.get_global_rect().size.length() > 600.0
+	return control is ArenaBackdrop or (control is ColorRect and control.get_global_rect().size.length() > 600.0)
+
+func _is_decorative_control(control: Control) -> bool:
+	if control is ArenaBackdrop:
+		return true
+	if control is AbilityIcon:
+		return false
+	if control is Label or control is Button or control is LineEdit or control is OptionButton or control is ProgressBar or control is PanelContainer:
+		return false
+	if control is Container:
+		return false
+	return control.get_child_count() == 0
 
 func _is_hud_control(control: Control) -> bool:
-	return control is Label or control is ProgressBar or control is Button
+	return control is Label or control is ProgressBar or control is Button or control is AbilityIcon
 
 func _control_text(control: Control) -> String:
 	if control is Label:

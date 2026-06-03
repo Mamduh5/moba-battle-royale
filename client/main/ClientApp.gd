@@ -17,7 +17,7 @@ var _sequence := 0
 var _client_tick := 0
 var _paused := false
 var _screen_root: Control
-var _pause_overlay: Control
+var _pause_overlay: PanelContainer
 var _last_result: Dictionary = {}
 
 func _ready() -> void:
@@ -54,10 +54,6 @@ func _show_main_menu() -> void:
 	_clear_screen()
 	_match_room = null
 	_match_client.disconnect_from_match("menu")
-	var bg := ColorRect.new()
-	bg.color = Color(0.04, 0.10, 0.12)
-	bg.set_anchors_preset(Control.PRESET_FULL_RECT)
-	_screen_root.add_child(bg)
 	var menu := MainMenuScreen.new()
 	menu.quick_start_pressed.connect(func() -> void:
 		_selected_mode = GameConstants.MODE_TEAM_ARENA
@@ -68,105 +64,51 @@ func _show_main_menu() -> void:
 
 func _show_mode_select() -> void:
 	_clear_screen()
-	var bg := ColorRect.new()
-	bg.color = Color(0.05, 0.11, 0.13)
-	bg.set_anchors_preset(Control.PRESET_FULL_RECT)
-	_screen_root.add_child(bg)
-	var box := VBoxContainer.new()
-	box.anchor_left = 0.08
-	box.anchor_top = 0.08
-	box.anchor_right = 0.62
-	box.anchor_bottom = 0.92
-	box.add_theme_constant_override("separation", 14)
-	_screen_root.add_child(box)
-	var title := Label.new()
-	title.text = "Mode Select"
-	title.add_theme_font_size_override("font_size", 40)
-	box.add_child(title)
-	var mode_buttons := HBoxContainer.new()
-	mode_buttons.add_theme_constant_override("separation", 10)
-	box.add_child(mode_buttons)
-	var team_button := Button.new()
-	team_button.text = "3v3 Team Arena"
-	team_button.toggle_mode = true
-	team_button.button_pressed = _selected_mode == GameConstants.MODE_TEAM_ARENA
-	mode_buttons.add_child(team_button)
-	var dm_button := Button.new()
-	dm_button.text = "25 Player Deathmatch"
-	dm_button.toggle_mode = true
-	dm_button.button_pressed = _selected_mode == GameConstants.MODE_DEATHMATCH
-	mode_buttons.add_child(dm_button)
-	team_button.pressed.connect(func() -> void:
-		_selected_mode = GameConstants.MODE_TEAM_ARENA
-		team_button.button_pressed = true
-		dm_button.button_pressed = false
+	var screen := ModeSelectScreen.new()
+	screen.setup(ContentDB, _selected_mode, _selected_hero)
+	screen.start_with_bots.connect(func(mode_id: String, hero_id: String) -> void:
+		_selected_mode = mode_id
+		_selected_hero = hero_id
+		_start_local_match(false)
 	)
-	dm_button.pressed.connect(func() -> void:
-		_selected_mode = GameConstants.MODE_DEATHMATCH
-		team_button.button_pressed = false
-		dm_button.button_pressed = true
+	screen.host_match.connect(func(room_code: String) -> void:
+		_room_code = room_code
 	)
-	var hero_label := Label.new()
-	hero_label.text = "Hero"
-	box.add_child(hero_label)
-	var hero_select := OptionButton.new()
-	for hero_id in ContentDB.get_all_heroes().keys():
-		var hero: HeroDef = ContentDB.get_hero(str(hero_id))
-		hero_select.add_item(hero.display_name)
-		hero_select.set_item_metadata(hero_select.item_count - 1, hero.id)
-		if hero.id == _selected_hero:
-			hero_select.select(hero_select.item_count - 1)
-	hero_select.item_selected.connect(func(index: int) -> void:
-		_selected_hero = str(hero_select.get_item_metadata(index))
-	)
-	box.add_child(hero_select)
-	var room_row := HBoxContainer.new()
-	room_row.add_theme_constant_override("separation", 8)
-	box.add_child(room_row)
-	var room_field := LineEdit.new()
-	room_field.custom_minimum_size = Vector2(180, 38)
-	room_row.add_child(room_field)
-	var host := Button.new()
-	host.text = "Host Match"
-	room_row.add_child(host)
-	var join := Button.new()
-	join.text = "Join Match"
-	room_row.add_child(join)
-	var code_label := Label.new()
-	code_label.text = "Room Code: Local"
-	box.add_child(code_label)
-	host.pressed.connect(func() -> void:
-		_room_code = "ROOM%04d" % (Time.get_ticks_msec() % 10000)
-		code_label.text = "Room Code: %s" % _room_code
-	)
-	join.pressed.connect(func() -> void:
-		_room_code = room_field.text.strip_edges()
-		if _room_code == "":
-			_room_code = "LOCAL"
-		code_label.text = "Joining: %s" % _room_code
+	screen.join_match.connect(func(mode_id: String, hero_id: String, room_code: String) -> void:
+		_selected_mode = mode_id
+		_selected_hero = hero_id
+		_room_code = room_code
 		_start_local_match(true)
 	)
-	var start := Button.new()
-	start.text = "Start With Bots"
-	start.custom_minimum_size = Vector2(280, 46)
-	start.pressed.connect(func() -> void: _start_local_match(false))
-	box.add_child(start)
-	var back := Button.new()
-	back.text = "Back"
-	back.pressed.connect(_show_main_menu)
-	box.add_child(back)
+	screen.back_pressed.connect(_show_main_menu)
+	_screen_root.add_child(screen)
 
 func _start_local_match(simulate_friend: bool) -> void:
 	if not _content_ready:
 		_show_error("Content validation failed. Check command output.")
 		return
 	_clear_screen()
+	var loading_bg := ArenaBackdrop.new()
+	loading_bg.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_screen_root.add_child(loading_bg)
+	var loading_panel := PanelContainer.new()
+	loading_panel.anchor_left = 0.08
+	loading_panel.anchor_top = 0.10
+	loading_panel.anchor_right = 0.44
+	loading_panel.anchor_bottom = 0.34
+	ArenaStyle.style_panel_container(loading_panel, Color(0.045, 0.075, 0.085, 0.94), Color(1.000, 0.765, 0.275, 0.35))
+	_screen_root.add_child(loading_panel)
+	var loading_box := VBoxContainer.new()
+	loading_box.add_theme_constant_override("separation", 10)
+	loading_panel.add_child(loading_box)
 	var loading := Label.new()
 	loading.text = "Loading Match"
-	loading.anchor_left = 0.08
-	loading.anchor_top = 0.08
-	loading.add_theme_font_size_override("font_size", 36)
-	_screen_root.add_child(loading)
+	ArenaStyle.style_label(loading, 34)
+	loading_box.add_child(loading)
+	var loading_sub := Label.new()
+	loading_sub.text = "Filling empty slots with server-owned bots"
+	ArenaStyle.style_label(loading_sub, 17, ArenaStyle.TEXT_MUTED)
+	loading_box.add_child(loading_sub)
 	var mode: ModeDef = ContentDB.get_mode(_selected_mode)
 	var map: MapDef = ContentDB.get_map(mode.map_id)
 	_match_room = MatchRoom.new()
@@ -201,20 +143,23 @@ func _build_pause_overlay(parent: Node = null) -> void:
 	_pause_overlay.anchor_top = 0.25
 	_pause_overlay.anchor_right = 0.64
 	_pause_overlay.anchor_bottom = 0.62
+	ArenaStyle.style_panel_container(_pause_overlay, Color(0.035, 0.052, 0.060, 0.96), Color(1.000, 0.765, 0.275, 0.50))
 	var box := VBoxContainer.new()
 	box.add_theme_constant_override("separation", 12)
 	_pause_overlay.add_child(box)
 	var title := Label.new()
 	title.text = "Paused"
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	title.add_theme_font_size_override("font_size", 32)
+	ArenaStyle.style_label(title, 32)
 	box.add_child(title)
 	var resume := Button.new()
 	resume.text = "Resume"
+	ArenaStyle.style_button(resume, "primary", Vector2(220, 46))
 	resume.pressed.connect(func() -> void: _set_paused(false))
 	box.add_child(resume)
 	var menu := Button.new()
 	menu.text = "Return To Menu"
+	ArenaStyle.style_button(menu, "secondary", Vector2(220, 46))
 	menu.pressed.connect(_show_main_menu)
 	box.add_child(menu)
 	if parent == null:
@@ -228,45 +173,18 @@ func _set_paused(value: bool) -> void:
 		_pause_overlay.visible = value
 
 func _show_result_screen(result: Dictionary) -> void:
+	var local_team := GameConstants.TEAM_A
+	if _match_room != null:
+		var session := _match_room.get_session(_local_player_id)
+		if session != null:
+			local_team = session.team_id
 	_match_room = null
 	_clear_screen()
-	var bg := ColorRect.new()
-	bg.color = Color(0.04, 0.10, 0.12)
-	bg.set_anchors_preset(Control.PRESET_FULL_RECT)
-	_screen_root.add_child(bg)
-	var box := VBoxContainer.new()
-	box.anchor_left = 0.1
-	box.anchor_top = 0.08
-	box.anchor_right = 0.72
-	box.anchor_bottom = 0.92
-	box.add_theme_constant_override("separation", 12)
-	_screen_root.add_child(box)
-	var title := Label.new()
-	title.text = _result_title(result)
-	title.add_theme_font_size_override("font_size", 42)
-	box.add_child(title)
-	var reason := Label.new()
-	reason.text = "Finished by %s" % str(result.get("reason", "match end")).capitalize()
-	box.add_child(reason)
-	var rankings: Array = result.get("rankings", [])
-	var local_line := Label.new()
-	local_line.text = _local_result_line(rankings)
-	box.add_child(local_line)
-	var top := Label.new()
-	top.text = _result_top_lines(rankings)
-	top.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	box.add_child(top)
-	var buttons := HBoxContainer.new()
-	buttons.add_theme_constant_override("separation", 10)
-	box.add_child(buttons)
-	var restart := Button.new()
-	restart.text = "Restart"
-	restart.pressed.connect(func() -> void: _start_local_match(false))
-	buttons.add_child(restart)
-	var menu := Button.new()
-	menu.text = "Return To Menu"
-	menu.pressed.connect(_show_main_menu)
-	buttons.add_child(menu)
+	var screen := ResultScreen.new()
+	screen.setup(result, _selected_mode, _local_player_id, local_team)
+	screen.restart_pressed.connect(func() -> void: _start_local_match(false))
+	screen.menu_pressed.connect(_show_main_menu)
+	_screen_root.add_child(screen)
 
 func _show_error(message: String) -> void:
 	_clear_screen()
@@ -274,6 +192,7 @@ func _show_error(message: String) -> void:
 	label.text = message
 	label.anchor_left = 0.1
 	label.anchor_top = 0.1
+	ArenaStyle.style_label(label, 22, ArenaStyle.CORAL)
 	_screen_root.add_child(label)
 
 func _result_title(result: Dictionary) -> String:
