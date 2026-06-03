@@ -16,6 +16,48 @@ build works -> game launches -> UI is readable -> gameplay is understandable -> 
 
 If visual or runtime issues are found, Codex must debug and retry instead of leaving them for the user.
 
+A final report that says "manual rendered UI pass still needed" means the complete-game challenge is not complete.
+
+## No manual visual QA handoff rule
+
+Do not leave rendered UI/readability verification for the user.
+
+Codex must either:
+
+1. perform an interactive rendered UI pass itself, or
+2. create and run an automated rendered UI audit that captures screenshots and checks UI/game milestones.
+
+Headless milestone logs alone are not enough to claim complete visual QA.
+
+If neither rendered interaction nor screenshot capture is possible, report the complete-game target as incomplete and name the exact environment blocker.
+
+## Required rendered UI audit artifacts
+
+Codex must produce local QA artifacts under a path such as:
+
+```text
+qa_artifacts/rendered_ui/
+```
+
+Required captures where tooling allows:
+
+```text
+1280x720/main_menu.png
+1280x720/mode_select.png
+1280x720/3v3_hud_mid_match.png
+1280x720/3v3_result.png
+1280x720/deathmatch_hud_mid_match.png
+1280x720/deathmatch_result.png
+1920x1080/main_menu.png
+1920x1080/mode_select.png
+1920x1080/3v3_hud_mid_match.png
+1920x1080/3v3_result.png
+1920x1080/deathmatch_hud_mid_match.png
+1920x1080/deathmatch_result.png
+```
+
+If screenshots are generated but not committed, the final report must list their local paths and summarize findings.
+
 ## Required visual checks
 
 Codex must inspect the player-facing game for:
@@ -37,7 +79,7 @@ Codex must inspect the player-facing game for:
 
 ## Required resolution checks
 
-At minimum, check or simulate these sizes:
+At minimum, check these sizes with actual rendered output when possible:
 
 ```text
 1280x720
@@ -61,7 +103,7 @@ Codex must verify from the game view, not only from scripts:
 - result screen reflects the actual match outcome,
 - restart or return-to-menu works.
 
-If visual interaction is unavailable, Codex must create and run an automated visual smoke path that at least captures or logs screen/state milestones:
+If visual interaction is unavailable, Codex must create and run an automated rendered smoke path that captures screenshots or rendered frames and logs screen/state milestones:
 
 ```text
 menu_loaded
@@ -72,6 +114,21 @@ combat_events_seen
 match_finished
 result_screen_visible
 ```
+
+## Required UI geometry audit
+
+Where possible, add a debug/audit command that inspects Control node Rect2 bounds for visible UI screens.
+
+The audit should flag:
+
+- overlapping sibling controls that should not overlap,
+- text labels whose content exceeds their control bounds,
+- buttons with zero or tiny size,
+- controls outside the viewport,
+- HUD panels intersecting the central gameplay focus area more than intended,
+- score/rank labels hidden behind other controls.
+
+The audit may use allowlists for deliberate layout overlap, but it must not ignore all overlap by default.
 
 ## Required console and debugger checks
 
@@ -143,6 +200,8 @@ The final report must include:
 
 ```text
 Runtime/visual QA:
+- rendered screenshots or interactive inspection method used
+- screenshot/artifact paths if generated
 - resolutions checked
 - UI overlap/text collision findings
 - gameplay readability findings
@@ -152,11 +211,19 @@ Runtime/visual QA:
 - remaining visual limitations
 ```
 
+If rendered UI inspection was not completed, the final report must say:
+
+```text
+Game completion status: incomplete for strict challenge rules, because rendered UI QA was not completed.
+```
+
 ## What does not count as success
 
 - Only running unit tests.
 - Only checking that scripts parse.
 - Only running bot-soak without launching or smoke-testing the player-facing flow.
+- Only logging milestones without rendered screenshots or interactive rendered inspection.
+- Leaving a rendered UI pass for the user.
 - Leaving overlapped UI or unreadable HUD for the user to notice.
 - Ignoring console errors because the game window opened.
 - Claiming multiplayer works without checking join/handshake/input/snapshot logs.
