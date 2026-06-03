@@ -34,6 +34,7 @@ docs/godot_codex_reference_upgrade_v2/CODEX_CURRENT_REQUIRED_SCOPE.md
 docs/godot_codex_reference_upgrade_v2/CODEX_MULTIPLAYER_FRIEND_BOT_FILL.md
 docs/godot_codex_reference_upgrade_v2/CODEX_25_PLAYER_DEATHMATCH_MODE.md
 docs/godot_codex_reference_upgrade_v2/CODEX_ART_DIRECTION.md
+docs/godot_codex_reference_upgrade_v2/CODEX_RUNTIME_VISUAL_QA.md
 ```
 
 ## Non-negotiable project direction
@@ -51,7 +52,8 @@ Build a complete scoped Godot 4.x top-down hero arena / MOBA-lite game using:
 - data-driven content JSON,
 - cohesive simple arcade art direction,
 - readable heroes, ability icons, VFX, arena, HUD, menu, mode select, pause, and result screens,
-- headless validation, parse checks, protocol checks, and bot soak tests for both modes,
+- runtime/visual QA for UI overlap, text collisions, console errors, gameplay readability, and network logs,
+- headless validation, parse checks, protocol checks, bot soak tests, and playable-flow checks for both modes,
 - player-facing menu, mode select, match, HUD, pause, and result screens.
 
 Do not replace this with a local-only prototype. Early features must still use the final boundaries: input frames, simulation ticks, server-owned truth, snapshots, and content validation.
