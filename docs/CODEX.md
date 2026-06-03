@@ -30,6 +30,9 @@ Also read:
 
 ```text
 docs/godot_codex_reference_upgrade_v2/CODEX_COMPLETE_GAME_CONTRACT.md
+docs/godot_codex_reference_upgrade_v2/CODEX_CURRENT_REQUIRED_SCOPE.md
+docs/godot_codex_reference_upgrade_v2/CODEX_MULTIPLAYER_FRIEND_BOT_FILL.md
+docs/godot_codex_reference_upgrade_v2/CODEX_25_PLAYER_DEATHMATCH_MODE.md
 ```
 
 ## Non-negotiable project direction
@@ -40,10 +43,13 @@ Build a complete scoped Godot 4.x top-down hero arena / MOBA-lite game using:
 - Godot client,
 - Godot headless authoritative match server,
 - Nakama-compatible backend boundary,
-- server-authoritative combat, cooldowns, deaths, scoring, objectives, bots, and match results,
+- 3v3 Team Arena,
+- 25 Player Deathmatch with no teams,
+- friend-capable multiplayer with bot fill,
+- server-authoritative combat, cooldowns, deaths, respawns, scoring, objectives/ranking, bots, and match results,
 - data-driven content JSON,
-- headless validation, parse checks, protocol checks, and bot soak tests,
-- player-facing menu, match, HUD, pause, and result screens.
+- headless validation, parse checks, protocol checks, and bot soak tests for both modes,
+- player-facing menu, mode select, match, HUD, pause, and result screens.
 
 Do not replace this with a local-only prototype. Early features must still use the final boundaries: input frames, simulation ticks, server-owned truth, snapshots, and content validation.
 
