@@ -16,6 +16,17 @@ docs/godot_codex_reference/
 
 The legacy folder was removed. Do not recreate it and do not use old v1 docs as the build contract.
 
+## For the completion rescue pass
+
+The previous challenge runs produced useful systems but failed strict completion gates. Before rebuilding anything, read:
+
+```text
+docs/godot_codex_reference_upgrade_v2/CODEX_COMPLETION_RESCUE_PASS.md
+docs/godot_codex_reference_upgrade_v2/CODEX_ONE_PROMPT_PRODUCT_QUALITY_GATE.md
+```
+
+The rescue pass must fix failed gates in the existing project: rendered UI QA, product-quality/art direction, real friend-capable transport, live backend validation where Docker is available, and strict final gate reporting.
+
 ## For the single-prompt complete-game challenge
 
 Start here:
@@ -34,6 +45,7 @@ docs/godot_codex_reference_upgrade_v2/CODEX_CURRENT_REQUIRED_SCOPE.md
 docs/godot_codex_reference_upgrade_v2/CODEX_MULTIPLAYER_FRIEND_BOT_FILL.md
 docs/godot_codex_reference_upgrade_v2/CODEX_25_PLAYER_DEATHMATCH_MODE.md
 docs/godot_codex_reference_upgrade_v2/CODEX_ART_DIRECTION.md
+docs/godot_codex_reference_upgrade_v2/CODEX_ONE_PROMPT_PRODUCT_QUALITY_GATE.md
 docs/godot_codex_reference_upgrade_v2/CODEX_RUNTIME_VISUAL_QA.md
 ```
 
@@ -50,8 +62,9 @@ Build a complete scoped Godot 4.x top-down hero arena / MOBA-lite game using:
 - friend-capable multiplayer with bot fill,
 - server-authoritative combat, cooldowns, deaths, respawns, scoring, objectives/ranking, bots, and match results,
 - data-driven content JSON,
-- cohesive simple arcade art direction,
+- cohesive simple arcade art direction that does not look like raw primitives or default Godot UI,
 - readable heroes, ability icons, VFX, arena, HUD, menu, mode select, pause, and result screens,
+- product-quality review from screenshots, not only automated green checks,
 - runtime/visual QA for UI overlap, text collisions, console errors, gameplay readability, and network logs,
 - headless validation, parse checks, protocol checks, bot soak tests, and playable-flow checks for both modes,
 - player-facing menu, mode select, match, HUD, pause, and result screens.
@@ -59,3 +72,5 @@ Build a complete scoped Godot 4.x top-down hero arena / MOBA-lite game using:
 Do not replace this with a local-only prototype. Early features must still use the final boundaries: input frames, simulation ticks, server-owned truth, snapshots, and content validation.
 
 Do not ask the user to manually finish the required game path after the prompt. The one-prompt challenge target is a complete small game, not a mockup, not a prototype, and not a partial vertical slice.
+
+Do not report `Complete` if the game works technically but still looks like a first prototype, programmer-art scene, raw Godot controls, or squares/circles-only game.
