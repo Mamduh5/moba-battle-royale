@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WorldSnapshot",
+  "type": "object",
+  "required": [
+    "snapshot_id",
+    "server_tick",
+    "last_processed_input_by_player",
+    "entities",
+    "scoreboard"
+  ],
+  "properties": {
+    "snapshot_id": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "server_tick": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "last_processed_input_by_player": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer"
+      }
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/entity"
+      }
+    },
+    "scoreboard": {
+      "type": "object"
+    }
+  },
+  "$defs": {
+    "entity": {
+      "type": "object",
+      "required": [
+        "entity_id",
+        "kind",
+        "position"
+      ],
+      "properties": {
+        "entity_id": {
+          "type": "integer"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "owner_player_id": {
+          "type": "string"
+        },
+        "team_id": {
+          "type": "integer"
+        },
+        "hero_id": {
+          "type": "string"
+        },
+        "position": {
+          "type": "object"
+        },
+        "velocity": {
+          "type": "object"
+        },
+        "facing": {
+          "type": "object"
+        },
+        "health": {
+          "type": "object"
+        },
+        "status_tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "cooldowns": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+class_name DebugBus
+extends Node
+
+var _trace_enabled := false
+var _trace_file: FileAccess = null
+
+func info(category: String, event: String, fields: Dictionary = {}) -> void:
+    _log("info", category, event, fields)
+
+func warn(category: String, event: String, fields: Dictionary = {}) -> void:
+    _log("warn", category, event, fields)
+
+func error(category: String, event: String, fields: Dictionary = {}) -> void:
+    _log("error", category, event, fields)
+
+func set_trace_enabled(enabled: bool) -> void:
+    _trace_enabled = enabled
+
+func write_trace_line(fields: Dictionary) -> void:
+    if not _trace_enabled:
+        return
+    var line := JSON.stringify(fields)
+    print(line)
+
+func _log(level: String, category: String, event: String, fields: Dictionary) -> void:
+    var payload := {
+        "level": level,
+        "category": category,
+        "event": event,
+        "time_ms": Time.get_ticks_msec(),
+        "fields": fields,
+    }
+    print(JSON.stringify(payload))
+    write_trace_line(payload)

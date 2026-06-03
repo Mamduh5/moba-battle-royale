@@ -1,0 +1,38 @@
+{
+  "id": "ability_guardian_dash",
+  "display_name": "Bulwark Dash",
+  "slot": "ability_1",
+  "cast_type": "directional",
+  "targeting": {
+    "shape": "line",
+    "range": 6.0,
+    "radius": 0.8
+  },
+  "cooldown_sec": 8.0,
+  "cost": {
+    "type": "none",
+    "amount": 0
+  },
+  "movement": {
+    "type": "dash",
+    "distance": 4.5,
+    "duration_sec": 0.22,
+    "stop_on_wall": true
+  },
+  "effects": [
+    {
+      "type": "damage",
+      "amount": 80,
+      "damage_type": "physical"
+    },
+    {
+      "type": "status",
+      "status_id": "stagger",
+      "duration_sec": 0.35
+    }
+  ],
+  "server_tags": [
+    "requires_alive",
+    "movement_ability"
+  ]
+}

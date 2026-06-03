@@ -1,0 +1,26 @@
+{
+  "id": "ability_guardian_barrier",
+  "display_name": "Barrier Field",
+  "slot": "ability_2",
+  "cast_type": "self",
+  "targeting": {
+    "shape": "self",
+    "range": 0.0
+  },
+  "cooldown_sec": 12.0,
+  "cost": {
+    "type": "none",
+    "amount": 0
+  },
+  "effects": [
+    {
+      "type": "shield",
+      "amount": 180,
+      "duration_sec": 3.0
+    }
+  ],
+  "server_tags": [
+    "requires_alive",
+    "defensive"
+  ]
+}

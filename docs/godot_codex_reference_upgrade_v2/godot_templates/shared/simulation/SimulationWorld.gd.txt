@@ -1,0 +1,51 @@
+class_name SimulationWorld
+extends RefCounted
+
+var _state := SimulationState.new()
+var _tick := 0
+var _input_queue: Dictionary = {}
+var _config: SimulationConfig = null
+var _content_db: Object = null
+
+func configure(config: SimulationConfig, content_db: Object) -> void:
+    _config = config
+    _content_db = content_db
+
+func reset(match_seed: int, mode_id: String, map_id: String) -> void:
+    _state = SimulationState.new()
+    _tick = 0
+    _input_queue.clear()
+    _state.push_event({"type": "match_reset", "mode_id": mode_id, "map_id": map_id, "seed": match_seed})
+
+func add_player(player_id: String, hero_id: String, team_id: int, spawn_id: String) -> int:
+    var entity_id := _state.create_entity("hero", player_id)
+    _state.patch_entity(entity_id, {"kind": "hero", "hero_id": hero_id, "team_id": team_id, "spawn_id": spawn_id})
+    _state.push_event({"type": "player_spawned", "player_id": player_id, "entity_id": entity_id, "tick": _tick})
+    return entity_id
+
+func remove_player(player_id: String) -> void:
+    for entity_id in _state.query_entities({"owner_player_id": player_id}):
+        _state.remove_entity(entity_id)
+
+func queue_input(input: InputFrame) -> void:
+    if not input.is_valid():
+        return
+    _input_queue[input.player_id] = input.normalized()
+
+func step_tick() -> Array[Dictionary]:
+    _tick += 1
+    # Wire systems in the contract order: input -> movement -> abilities -> effects -> combat -> objectives.
+    # This skeleton intentionally does not fake complete gameplay.
+    var events := _state.drain_events()
+    return events
+
+func build_snapshot() -> SnapshotFrame:
+    var snapshot := SnapshotFrame.new()
+    snapshot.server_tick = _tick
+    return snapshot
+
+func get_state() -> SimulationState:
+    return _state
+
+func get_tick() -> int:
+    return _tick

@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/hero.schema.json",
+  "title": "HeroDefinition",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "content_version",
+    "id",
+    "display_key",
+    "role",
+    "base_stats",
+    "abilities",
+    "presentation"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "content_version": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^hero_[a-z0-9_]+$"
+    },
+    "display_key": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "fighter",
+        "tank",
+        "assassin",
+        "mage",
+        "marksman",
+        "support",
+        "specialist"
+      ]
+    },
+    "base_stats": {
+      "type": "object",
+      "required": [
+        "health",
+        "move_speed",
+        "attack_range",
+        "armor",
+        "resistance"
+      ],
+      "additionalProperties": {
+        "type": [
+          "number",
+          "integer"
+        ]
+      },
+      "properties": {
+        "health": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "mana": {
+          "type": "number",
+          "minimum": 0
+        },
+        "move_speed": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "attack_range": {
+          "type": "number",
+          "minimum": 0
+        },
+        "armor": {
+          "type": "number"
+        },
+        "resistance": {
+          "type": "number"
+        }
+      }
+    },
+    "abilities": {
+      "type": "object",
+      "required": [
+        "basic",
+        "skill_1",
+        "skill_2",
+        "ultimate"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "basic": {
+          "type": "string",
+          "pattern": "^ability_[a-z0-9_]+$"
+        },
+        "skill_1": {
+          "type": "string",
+          "pattern": "^ability_[a-z0-9_]+$"
+        },
+        "skill_2": {
+          "type": "string",
+          "pattern": "^ability_[a-z0-9_]+$"
+        },
+        "ultimate": {
+          "type": "string",
+          "pattern": "^ability_[a-z0-9_]+$"
+        },
+        "passive": {
+          "type": "string",
+          "pattern": "^ability_[a-z0-9_]+$"
+        }
+      }
+    },
+    "presentation": {
+      "type": "object",
+      "required": [
+        "icon_key",
+        "portrait_key",
+        "model_key"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "icon_key": {
+          "type": "string"
+        },
+        "portrait_key": {
+          "type": "string"
+        },
+        "model_key": {
+          "type": "string"
+        },
+        "voice_set_key": {
+          "type": "string"
+        }
+      }
+    },
+    "last_balance_note": {
+      "type": "string"
+    }
+  }
+}

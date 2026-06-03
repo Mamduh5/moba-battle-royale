@@ -1,0 +1,34 @@
+class_name MatchClient
+extends Node
+
+signal connected_to_match
+signal disconnected_from_match(reason: String)
+signal snapshot_received(snapshot: SnapshotFrame)
+signal correction_received(payload: Dictionary)
+
+var _state := "disconnected"
+var _token := ""
+
+func connect_to_match(host: String, port: int, token: String) -> bool:
+    _state = "connecting"
+    _token = token
+    # Transport implementation belongs behind an adapter.
+    # Do not put gameplay rules here.
+    return true
+
+func disconnect_from_match(reason: String) -> void:
+    _state = "disconnected"
+    disconnected_from_match.emit(reason)
+
+func send_input(input: InputFrame) -> void:
+    if _state != "connected":
+        return
+    # Encode and send player_input through transport.
+    pass
+
+func poll_network() -> void:
+    # Poll transport and dispatch protocol messages.
+    pass
+
+func get_connection_state() -> String:
+    return _state

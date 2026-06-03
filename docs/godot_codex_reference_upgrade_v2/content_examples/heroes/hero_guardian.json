@@ -1,0 +1,27 @@
+{
+  "id": "hero_guardian",
+  "display_name": "Guardian",
+  "role": "tank",
+  "base_stats": {
+    "max_health": 1000,
+    "move_speed": 4.2,
+    "turn_speed": 720,
+    "attack_range": 5.5,
+    "vision_range": 12.0
+  },
+  "ability_slots": {
+    "basic_attack": "ability_guardian_basic",
+    "ability_1": "ability_guardian_dash",
+    "ability_2": "ability_guardian_barrier",
+    "ultimate": "ability_guardian_slam"
+  },
+  "presentation": {
+    "scene_path": "res://scenes/prefabs/HeroActor.tscn",
+    "icon_path": "res://assets/ui/heroes/hero_guardian.png"
+  },
+  "tags": [
+    "frontline",
+    "melee",
+    "starter"
+  ]
+}

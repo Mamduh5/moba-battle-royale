@@ -1,0 +1,44 @@
+{
+  "protocol_version": "arena-protocol-1",
+  "message_type": "player_input",
+  "match_id": "match_local_001",
+  "player_id": "player_01",
+  "sequence": 42,
+  "client_tick": 120,
+  "server_tick": 0,
+  "sent_at_ms": 1710000000000,
+  "payload": {
+    "input_sequence": 8001,
+    "client_tick": 120,
+    "move": {
+      "x": 0.75,
+      "y": -0.2
+    },
+    "aim": {
+      "x": 0.9,
+      "y": 0.44
+    },
+    "buttons": {
+      "basic_attack": true,
+      "ability_1": false,
+      "ability_2": false,
+      "ultimate": false,
+      "interact": false
+    },
+    "cast_requests": [
+      {
+        "slot": "basic_attack",
+        "ability_id": "ability_guardian_basic",
+        "target_entity_id": 0,
+        "target_position": {
+          "x": 12.5,
+          "y": 8.0
+        },
+        "aim": {
+          "x": 0.9,
+          "y": 0.44
+        }
+      }
+    ]
+  }
+}

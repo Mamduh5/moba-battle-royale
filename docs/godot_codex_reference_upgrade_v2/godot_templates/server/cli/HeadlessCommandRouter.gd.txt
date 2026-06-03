@@ -1,0 +1,73 @@
+extends SceneTree
+
+const EXIT_SUCCESS := 0
+const EXIT_GENERIC_FAILURE := 1
+const EXIT_INVALID_ARGS := 2
+const EXIT_CONTENT_FAILURE := 3
+const EXIT_TEST_FAILURE := 4
+const EXIT_PROTOCOL_FAILURE := 5
+const EXIT_SERVER_FAILURE := 6
+const EXIT_BOT_SOAK_FAILURE := 7
+
+func _init() -> void:
+    var parsed := _parse_args(OS.get_cmdline_user_args())
+    var exit_code := _dispatch(parsed)
+    quit(exit_code)
+
+func _parse_args(args: PackedStringArray) -> Dictionary:
+    var parsed := {"cmd": "", "options": {}}
+    var i := 0
+    while i < args.size():
+        var token := args[i]
+        if token == "--cmd" and i + 1 < args.size():
+            parsed["cmd"] = args[i + 1]
+            i += 2
+            continue
+        if token.begins_with("--") and i + 1 < args.size():
+            parsed["options"][token.substr(2)] = args[i + 1]
+            i += 2
+            continue
+        i += 1
+    return parsed
+
+func _dispatch(parsed: Dictionary) -> int:
+    match parsed.get("cmd", ""):
+        "validate-content":
+            return _validate_content(parsed["options"])
+        "run-tests":
+            return _run_tests(parsed["options"])
+        "protocol-check":
+            return _protocol_check(parsed["options"])
+        "bot-soak":
+            return _bot_soak(parsed["options"])
+        "server-smoke":
+            return _server_smoke(parsed["options"])
+        "export-server":
+            return _export_server(parsed["options"])
+        _:
+            printerr("Unknown or missing --cmd")
+            return EXIT_INVALID_ARGS
+
+func _validate_content(_options: Dictionary) -> int:
+    printerr("validate-content is not implemented yet")
+    return EXIT_CONTENT_FAILURE
+
+func _run_tests(_options: Dictionary) -> int:
+    printerr("run-tests is not implemented yet")
+    return EXIT_TEST_FAILURE
+
+func _protocol_check(_options: Dictionary) -> int:
+    printerr("protocol-check is not implemented yet")
+    return EXIT_PROTOCOL_FAILURE
+
+func _bot_soak(_options: Dictionary) -> int:
+    printerr("bot-soak is not implemented yet")
+    return EXIT_BOT_SOAK_FAILURE
+
+func _server_smoke(_options: Dictionary) -> int:
+    printerr("server-smoke is not implemented yet")
+    return EXIT_SERVER_FAILURE
+
+func _export_server(_options: Dictionary) -> int:
+    printerr("export-server is not implemented yet")
+    return EXIT_GENERIC_FAILURE

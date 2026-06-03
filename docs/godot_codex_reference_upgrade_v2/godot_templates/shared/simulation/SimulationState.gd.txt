@@ -1,0 +1,55 @@
+class_name SimulationState
+extends RefCounted
+
+var _next_entity_id := 1000
+var _entities: Dictionary = {}
+var _events: Array[Dictionary] = []
+
+func create_entity(archetype: String, owner_player_id: String = "") -> int:
+    _next_entity_id += 1
+    var entity_id := _next_entity_id
+    _entities[entity_id] = {
+        "entity_id": entity_id,
+        "archetype": archetype,
+        "owner_player_id": owner_player_id,
+        "position": {"x": 0.0, "y": 0.0},
+        "velocity": {"x": 0.0, "y": 0.0},
+        "status_tags": ["alive"],
+    }
+    return entity_id
+
+func remove_entity(entity_id: int) -> void:
+    _entities.erase(entity_id)
+
+func has_entity(entity_id: int) -> bool:
+    return _entities.has(entity_id)
+
+func get_entity(entity_id: int) -> Dictionary:
+    return _entities.get(entity_id, {}).duplicate(true)
+
+func patch_entity(entity_id: int, patch: Dictionary) -> void:
+    if not _entities.has(entity_id):
+        return
+    for key in patch.keys():
+        _entities[entity_id][key] = patch[key]
+
+func query_entities(filter: Dictionary = {}) -> Array[int]:
+    var result: Array[int] = []
+    for entity_id in _entities.keys():
+        var entity: Dictionary = _entities[entity_id]
+        var matches := true
+        for key in filter.keys():
+            if entity.get(key) != filter[key]:
+                matches = false
+                break
+        if matches:
+            result.append(int(entity_id))
+    return result
+
+func push_event(event: Dictionary) -> void:
+    _events.append(event)
+
+func drain_events() -> Array[Dictionary]:
+    var out := _events.duplicate(true)
+    _events.clear()
+    return out

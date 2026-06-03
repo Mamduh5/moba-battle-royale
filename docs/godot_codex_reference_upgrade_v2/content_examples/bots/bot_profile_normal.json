@@ -1,0 +1,13 @@
+{
+  "id": "bot_profile_normal",
+  "display_name": "Normal Bot",
+  "reaction_delay_ticks": 6,
+  "aim_error_degrees": 7.5,
+  "aggression": 0.55,
+  "objective_priority": 0.65,
+  "retreat_health_ratio": 0.28,
+  "skill_usage": 0.6,
+  "dodge_skill": 0.45,
+  "map_awareness": 0.55,
+  "allowed_hidden_information": false
+}

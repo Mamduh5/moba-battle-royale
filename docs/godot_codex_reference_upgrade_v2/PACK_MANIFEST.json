@@ -1,0 +1,216 @@
+{
+  "name": "godot_codex_reference_upgrade_v2",
+  "file_count": 42,
+  "files": [
+    {
+      "path": "CODEX_BUILD_CONTRACT.md",
+      "sha256": "8c3ae6ab4d8bcfdf75f3e8eaa37ea29c0dc57756b1448f144c56a44737590eb2",
+      "bytes": 3114
+    },
+    {
+      "path": "README.md",
+      "sha256": "9f75f38705ded0fa2f197fc5d37bfb97424691a2664f1f4d060738dcaa1ae7be",
+      "bytes": 1749
+    },
+    {
+      "path": "UPGRADE_INDEX.md",
+      "sha256": "6f27c3d23b3d8ce3d15ae3e88fdc425ac0ecbe726a93c693bb1ecfa4dc7a1d93",
+      "bytes": 1725
+    },
+    {
+      "path": "content_examples/abilities/ability_guardian_barrier.json",
+      "sha256": "b1d58991d38a56fec86b7da7489396c1e289d34ef606f7d5172faa15a796bd85",
+      "bytes": 422
+    },
+    {
+      "path": "content_examples/abilities/ability_guardian_basic.json",
+      "sha256": "1a3b71c4368f114ac6edbe4d8b34ae9f4a5b4e0b8474b8895fe4159d040f11ee",
+      "bytes": 485
+    },
+    {
+      "path": "content_examples/abilities/ability_guardian_dash.json",
+      "sha256": "8f51a9979dcd836ece07f5cc7e8ebde53489a7ffc3762ee92e7733b6794dfd07",
+      "bytes": 662
+    },
+    {
+      "path": "content_examples/abilities/ability_guardian_slam.json",
+      "sha256": "acd98fe3d6460119054f065e7ba667106f1a28b4ec3dfb3ee2b4b3f8a1e68215",
+      "bytes": 572
+    },
+    {
+      "path": "content_examples/bots/bot_profile_normal.json",
+      "sha256": "d11323393df3b03611b14692bc27681a1945e0001db7ef7c8233bc99702b9d26",
+      "bytes": 315
+    },
+    {
+      "path": "content_examples/heroes/hero_guardian.json",
+      "sha256": "7a844aed730ccfefda715b4ca9e355792da9a33da43a2efd3506a1236cee32af",
+      "bytes": 621
+    },
+    {
+      "path": "content_examples/maps/map_sunken_arena.json",
+      "sha256": "35e46f18e18daf53da419bbc65fec8e6b336472c1f0c2e0eee555370d0562399",
+      "bytes": 1409
+    },
+    {
+      "path": "content_examples/modes/mode_team_arena_3v3.json",
+      "sha256": "a65e4b514d4114ffb96028c3ad9fb93fb0eaa3026db5c46826405d844a5be05a",
+      "bytes": 492
+    },
+    {
+      "path": "docs/24_exact_repository_layout.md",
+      "sha256": "c64ce29c3400a8808ddf8bf054e2383fc1882cd222452bdfe71f2451ae94d40d",
+      "bytes": 4944
+    },
+    {
+      "path": "docs/25_godot_class_contracts.md",
+      "sha256": "38b83c88acac151bfd6c491dab9c7ed36d105eb1ca0f038ba70d3680e6cfab82",
+      "bytes": 9520
+    },
+    {
+      "path": "docs/26_cli_command_contract.md",
+      "sha256": "c15b7b05e1987f52b3cc313b82146b9ce5126e36d2c7c801e32d99f826891019",
+      "bytes": 3622
+    },
+    {
+      "path": "docs/27_network_payload_contracts.md",
+      "sha256": "3d449d03c07149543a31c7d6a534a52de107d9b627d268056a45fca0846368a2",
+      "bytes": 6424
+    },
+    {
+      "path": "docs/28_nakama_runtime_contract.md",
+      "sha256": "41269d082eb307b3a12181b305c0285c9b9770beb4451efb6a94ec83cae69b7d",
+      "bytes": 5066
+    },
+    {
+      "path": "docs/29_content_examples_and_data_rules.md",
+      "sha256": "3ab37f6115fc0332454c77ccf4060fb9dc256d26dd5e3b83f6c82d3c43fb7c7b",
+      "bytes": 2590
+    },
+    {
+      "path": "docs/30_first_30_codex_tasks.md",
+      "sha256": "92600890d5fc5f51aba826fb677e9192ae5c857e9000170a81bd80c64200c1ee",
+      "bytes": 6233
+    },
+    {
+      "path": "docs/31_server_tick_simulation_contract.md",
+      "sha256": "03022cbe4d4e5592061f233c420868dbf156a85be5a3c744d306893535db056f",
+      "bytes": 2786
+    },
+    {
+      "path": "docs/32_local_dev_debug_contract.md",
+      "sha256": "7202e59ab3ec08d92648a8e34034548426917dcd9cc56c7516514227e9a901bb",
+      "bytes": 2407
+    },
+    {
+      "path": "docs/33_testing_contract.md",
+      "sha256": "92cd985df77c8b5ba3b08fa136bb61a6eb24f6dd64c9c5c94cdcdfaedc569ad2",
+      "bytes": 2774
+    },
+    {
+      "path": "docs/34_bot_contracts.md",
+      "sha256": "1f94117d6ef3f078059b7f11e823b200a1bfa924de9de6fa8c890dbece77bc95",
+      "bytes": 2516
+    },
+    {
+      "path": "docs/35_scene_ui_contracts.md",
+      "sha256": "3f3b2744b02c63af88c9394c2ce36ba6cabcd28d44172024cc29eddfa368336d",
+      "bytes": 2081
+    },
+    {
+      "path": "docs/36_pr_gate_and_review_contract.md",
+      "sha256": "36246500788d1043806b827f19516cc88608c1c5453e3c16f3a70a3aea58741d",
+      "bytes": 2187
+    },
+    {
+      "path": "godot_templates/autoload/DebugBus.gd.txt",
+      "sha256": "0e5b5d7f165a884c069348050cde4480305aab07d5c3f60edcac07f29704ece8",
+      "bytes": 1011
+    },
+    {
+      "path": "godot_templates/autoload/GameConfig.gd.txt",
+      "sha256": "f35d3f3eae70ebb340a9dcec488105693d682122fd6a33d86ac15625ae5cc0f2",
+      "bytes": 1083
+    },
+    {
+      "path": "godot_templates/client/network/MatchClient.gd.txt",
+      "sha256": "6a912ae2dd3f67de0963ff5ebdc5970d690c5b615207014b24ea14217c7ef075",
+      "bytes": 909
+    },
+    {
+      "path": "godot_templates/server/cli/HeadlessCommandRouter.gd.txt",
+      "sha256": "0af95a02994ef37f2f680885b8c04bc4bbd17ddc82d61decb44bfd180f0648b2",
+      "bytes": 2335
+    },
+    {
+      "path": "godot_templates/server/match/MatchRoom.gd.txt",
+      "sha256": "7bf76fce8d91c9dd6c602926f6083920957e3114a30a0635e6451a1a0b97c15f",
+      "bytes": 1625
+    },
+    {
+      "path": "godot_templates/shared/bots/BotBrain.gd.txt",
+      "sha256": "3ddfe7b119b5844a5d0fe6db0143b9881533c99372d87b5f0ed3bd9749c43ccd",
+      "bytes": 1255
+    },
+    {
+      "path": "godot_templates/shared/net/InputFrame.gd.txt",
+      "sha256": "7372515f34ae03d8279fbc18fe5eb92e392440c87a7ba3f4603cf0506b84a1bc",
+      "bytes": 2094
+    },
+    {
+      "path": "godot_templates/shared/net/NetworkCodec.gd.txt",
+      "sha256": "8b864d18d4aaac73bd5c6096a3db406c5ca2acca3a8dbd91046f97b012c8d794",
+      "bytes": 724
+    },
+    {
+      "path": "godot_templates/shared/net/NetworkEnvelope.gd.txt",
+      "sha256": "6cc42cdab52facd7818a9e71ffcf75c8d7bce1927de310d811e8b6ba5a424ffe",
+      "bytes": 1634
+    },
+    {
+      "path": "godot_templates/shared/simulation/SimulationState.gd.txt",
+      "sha256": "f65c7608d6782496bec482d91058678757957a257b0ae7ca88cf6ad378ddc72e",
+      "bytes": 1629
+    },
+    {
+      "path": "godot_templates/shared/simulation/SimulationWorld.gd.txt",
+      "sha256": "bd03b0e9656469addf1807d7a780c52c1772fad98db2d1d43cbbed4cb89eb86c",
+      "bytes": 1804
+    },
+    {
+      "path": "protocol_examples/player_input.example.json",
+      "sha256": "8c31da8b777ab9ef28fafc5a41960c34254b951a2fdad06cf395e86c5cff671b",
+      "bytes": 865
+    },
+    {
+      "path": "protocol_examples/world_snapshot.example.json",
+      "sha256": "d4cbed8a72ac417414679bfe35ac4d497f3dbc122f9befc8ba7b96518cfebcaf",
+      "bytes": 1153
+    },
+    {
+      "path": "schemas_v2/input_frame.schema.json",
+      "sha256": "75f11065422161b44f7872f0c70e74a7da0f73b9005f114ba597708961d11c90",
+      "bytes": 1626
+    },
+    {
+      "path": "schemas_v2/match_token_claims.schema.json",
+      "sha256": "61d339910f78150bfc194d3ad7a7e977f095caff8be2ef7a79d7aee0d1426070",
+      "bytes": 697
+    },
+    {
+      "path": "schemas_v2/world_snapshot.schema.json",
+      "sha256": "73e90563a8f1b9a5a68e27eb2075dd1548feb415c63a2c47f819ca8ea5b7976f",
+      "bytes": 1605
+    },
+    {
+      "path": "scripts_v2/apply_overlay_notes.sh",
+      "sha256": "86981e314f835103c3cf300f0bc882babbae7e8525d31d0312af795d994773b6",
+      "bytes": 400
+    },
+    {
+      "path": "scripts_v2/verify_upgrade_pack.py",
+      "sha256": "6118b0281c81533010266bc80b95f87c60df314058345b837b3bcb6f414a3d92",
+      "bytes": 829
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+class_name BotBrain
+extends RefCounted
+
+var _profile: BotDifficultyProfile = null
+var _hero_id := ""
+
+func configure(profile: BotDifficultyProfile, hero_id: String) -> void:
+    _profile = profile
+    _hero_id = hero_id
+
+func build_input_frame(perception: BotPerception, tick: int, sequence: int) -> InputFrame:
+    var decision := _decide(perception)
+    var frame := InputFrame.new()
+    frame.player_id = str(perception.self_entity_id)
+    frame.input_sequence = sequence
+    frame.client_tick = tick
+    frame.move_x = decision.move_direction.x
+    frame.move_y = decision.move_direction.y
+    frame.aim_x = decision.aim_direction.x
+    frame.aim_y = decision.aim_direction.y
+    if decision.cast_slot != "":
+        frame.cast_requests.append({
+            "slot": decision.cast_slot,
+            "target_entity_id": decision.desired_target_entity_id,
+            "target_position": {"x": decision.desired_target_position.x, "y": decision.desired_target_position.y},
+            "aim": {"x": decision.aim_direction.x, "y": decision.aim_direction.y},
+        })
+    return frame.normalized()
+
+func _decide(_perception: BotPerception) -> BotDecision:
+    var decision := BotDecision.new()
+    decision.debug_reason = "default_idle"
+    return decision

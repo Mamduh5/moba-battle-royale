@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/schemas/network_message.schema.json",
+  "title": "NetworkMessageEnvelope",
+  "type": "object",
+  "required": [
+    "protocol_version",
+    "message_type",
+    "sent_at",
+    "payload"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "protocol_version": {
+      "type": "string"
+    },
+    "message_type": {
+      "type": "string"
+    },
+    "sent_at": {
+      "type": "number"
+    },
+    "correlation_id": {
+      "type": "string"
+    },
+    "payload": {
+      "type": "object"
+    }
+  }
+}

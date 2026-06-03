@@ -1,0 +1,88 @@
+{
+  "id": "map_sunken_arena",
+  "display_name": "Sunken Arena",
+  "scene_path": "res://scenes/maps/SunkenArena.tscn",
+  "bounds": {
+    "min_x": -32.0,
+    "min_y": -18.0,
+    "max_x": 32.0,
+    "max_y": 18.0
+  },
+  "spawn_groups": {
+    "team_1": [
+      {
+        "spawn_id": "t1_a",
+        "position": {
+          "x": -24.0,
+          "y": -4.0
+        }
+      },
+      {
+        "spawn_id": "t1_b",
+        "position": {
+          "x": -24.0,
+          "y": 0.0
+        }
+      },
+      {
+        "spawn_id": "t1_c",
+        "position": {
+          "x": -24.0,
+          "y": 4.0
+        }
+      }
+    ],
+    "team_2": [
+      {
+        "spawn_id": "t2_a",
+        "position": {
+          "x": 24.0,
+          "y": -4.0
+        }
+      },
+      {
+        "spawn_id": "t2_b",
+        "position": {
+          "x": 24.0,
+          "y": 0.0
+        }
+      },
+      {
+        "spawn_id": "t2_c",
+        "position": {
+          "x": 24.0,
+          "y": 4.0
+        }
+      }
+    ]
+  },
+  "objectives": [
+    {
+      "id": "center_relic",
+      "type": "capture_point",
+      "position": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "radius": 3.0
+    }
+  ],
+  "nav_hints": {
+    "lanes": [
+      [
+        {
+          "x": -24.0,
+          "y": 0.0
+        },
+        {
+          "x": 0.0,
+          "y": 0.0
+        },
+        {
+          "x": 24.0,
+          "y": 0.0
+        }
+      ]
+    ]
+  }
+}

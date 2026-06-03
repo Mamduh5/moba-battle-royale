@@ -1,0 +1,33 @@
+{
+  "id": "ability_guardian_slam",
+  "display_name": "Ground Slam",
+  "slot": "ultimate",
+  "cast_type": "target_position",
+  "targeting": {
+    "shape": "circle",
+    "range": 4.5,
+    "radius": 2.3
+  },
+  "cooldown_sec": 45.0,
+  "cost": {
+    "type": "charge",
+    "amount": 100
+  },
+  "effects": [
+    {
+      "type": "damage",
+      "amount": 180,
+      "damage_type": "physical"
+    },
+    {
+      "type": "status",
+      "status_id": "slow",
+      "duration_sec": 2.0,
+      "magnitude": 0.35
+    }
+  ],
+  "server_tags": [
+    "requires_alive",
+    "ultimate"
+  ]
+}

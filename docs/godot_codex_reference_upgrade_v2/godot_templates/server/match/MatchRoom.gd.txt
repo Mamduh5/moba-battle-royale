@@ -1,0 +1,51 @@
+class_name MatchRoom
+extends RefCounted
+
+var match_id := ""
+var _world := SimulationWorld.new()
+var _sessions: Dictionary = {}
+var _finished := false
+var _accumulator := 0.0
+var _tick_rate := 30
+
+func configure(match_config: Dictionary, content_db: Object) -> void:
+    match_id = str(match_config.get("match_id", "local_match"))
+    _tick_rate = int(match_config.get("tick_rate", 30))
+    var config := SimulationConfig.new()
+    _world.configure(config, content_db)
+    _world.reset(int(match_config.get("seed", 1)), str(match_config.get("mode_id", "")), str(match_config.get("map_id", "")))
+
+func add_session(session: ClientSession) -> void:
+    _sessions[session.player_id] = session
+
+func remove_session(player_id: String, reason: String) -> void:
+    _sessions.erase(player_id)
+    _world.remove_player(player_id)
+
+func receive_input(player_id: String, input: InputFrame) -> void:
+    if not _sessions.has(player_id):
+        return
+    if input.player_id != player_id:
+        return
+    _world.queue_input(input)
+
+func tick(delta: float) -> void:
+    if _finished:
+        return
+    _accumulator += delta
+    var step := 1.0 / float(_tick_rate)
+    while _accumulator >= step:
+        var events := _world.step_tick()
+        _handle_events(events)
+        _accumulator -= step
+
+func is_finished() -> bool:
+    return _finished
+
+func build_result() -> Dictionary:
+    return {"match_id": match_id, "finished": _finished, "server_tick": _world.get_tick()}
+
+func _handle_events(events: Array[Dictionary]) -> void:
+    for event in events:
+        if event.get("type") == "match_finished":
+            _finished = true

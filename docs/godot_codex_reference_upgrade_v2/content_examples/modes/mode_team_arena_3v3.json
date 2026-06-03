@@ -1,0 +1,25 @@
+{
+  "id": "mode_team_arena_3v3",
+  "display_name": "Team Arena 3v3",
+  "team_count": 2,
+  "players_per_team": 3,
+  "bot_fill": true,
+  "match_duration_sec": 600,
+  "score_limit": 100,
+  "friendly_fire": false,
+  "respawn": {
+    "enabled": true,
+    "base_delay_sec": 5.0,
+    "scaling_delay_per_death_sec": 1.0,
+    "max_delay_sec": 15.0
+  },
+  "scoring": {
+    "kill": 5,
+    "assist": 1,
+    "objective_capture": 15
+  },
+  "allowed_maps": [
+    "map_sunken_arena"
+  ],
+  "ranked": false
+}
