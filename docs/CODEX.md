@@ -8,13 +8,13 @@ Canonical implementation contract:
 docs/godot_codex_reference_upgrade_v2/
 ```
 
-Deprecated reference pack:
+Removed legacy reference pack:
 
 ```text
 docs/godot_codex_reference/
 ```
 
-The deprecated folder is retained only for historical context. Do not use it as the build contract.
+The legacy folder was removed. Do not recreate it and do not use old v1 docs as the build contract.
 
 ## For the single-prompt build challenge
 
