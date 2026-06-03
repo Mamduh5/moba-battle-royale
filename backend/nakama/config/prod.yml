@@ -1,0 +1,3 @@
+name: arena-royale-prod
+logger:
+  level: WARN

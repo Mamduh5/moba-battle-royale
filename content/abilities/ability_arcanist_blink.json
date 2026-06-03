@@ -1,0 +1,13 @@
+{
+  "id": "ability_arcanist_blink",
+  "display_name": "Phase Blink",
+  "slot": "ability_1",
+  "icon_symbol": "blink",
+  "effect_type": "blink",
+  "damage": 0,
+  "cooldown_sec": 7.5,
+  "range": 210,
+  "radius": 0,
+  "dash_distance": 210,
+  "vfx_color": "#2DF2C9"
+}

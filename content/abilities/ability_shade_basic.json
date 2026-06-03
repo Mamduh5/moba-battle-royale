@@ -1,0 +1,12 @@
+{
+  "id": "ability_shade_basic",
+  "display_name": "Twin Slash",
+  "slot": "basic_attack",
+  "icon_symbol": "slash",
+  "effect_type": "instant_arc",
+  "damage": 68,
+  "cooldown_sec": 0.48,
+  "range": 92,
+  "radius": 34,
+  "vfx_color": "#FF4FA3"
+}

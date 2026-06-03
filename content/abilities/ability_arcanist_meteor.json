@@ -1,0 +1,12 @@
+{
+  "id": "ability_arcanist_meteor",
+  "display_name": "Solar Meteor",
+  "slot": "ultimate",
+  "icon_symbol": "meteor",
+  "effect_type": "target_area",
+  "damage": 210,
+  "cooldown_sec": 26.0,
+  "range": 470,
+  "radius": 135,
+  "vfx_color": "#FF704D"
+}

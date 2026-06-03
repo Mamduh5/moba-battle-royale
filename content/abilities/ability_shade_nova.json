@@ -1,0 +1,12 @@
+{
+  "id": "ability_shade_nova",
+  "display_name": "Night Nova",
+  "slot": "ultimate",
+  "icon_symbol": "burst",
+  "effect_type": "area_damage",
+  "damage": 175,
+  "cooldown_sec": 24.0,
+  "range": 110,
+  "radius": 145,
+  "vfx_color": "#C742FF"
+}

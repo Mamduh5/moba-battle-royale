@@ -1,0 +1,9 @@
+name: arena-royale-local
+logger:
+  level: DEBUG
+session:
+  token_expiry_sec: 7200
+socket:
+  server_key: local-dev-server-key
+runtime:
+  path: /nakama/data/modules

@@ -1,0 +1,13 @@
+{
+  "id": "ability_guardian_charge",
+  "display_name": "Shield Charge",
+  "slot": "ability_1",
+  "icon_symbol": "dash",
+  "effect_type": "dash_strike",
+  "damage": 82,
+  "cooldown_sec": 6.0,
+  "range": 175,
+  "radius": 48,
+  "dash_distance": 155,
+  "vfx_color": "#2D6CDF"
+}

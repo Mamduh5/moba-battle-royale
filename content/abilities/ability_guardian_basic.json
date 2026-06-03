@@ -1,0 +1,14 @@
+{
+  "id": "ability_guardian_basic",
+  "display_name": "Shield Bolt",
+  "slot": "basic_attack",
+  "icon_symbol": "bolt",
+  "effect_type": "projectile",
+  "damage": 58,
+  "cooldown_sec": 0.55,
+  "range": 360,
+  "radius": 8,
+  "projectile_speed": 560,
+  "lifetime_sec": 0.72,
+  "vfx_color": "#62D0FF"
+}

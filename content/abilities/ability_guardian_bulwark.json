@@ -1,0 +1,13 @@
+{
+  "id": "ability_guardian_bulwark",
+  "display_name": "Bulwark Burst",
+  "slot": "ultimate",
+  "icon_symbol": "shield",
+  "effect_type": "shield_burst",
+  "damage": 92,
+  "shield": 260,
+  "cooldown_sec": 22.0,
+  "range": 0,
+  "radius": 118,
+  "vfx_color": "#FFD76A"
+}

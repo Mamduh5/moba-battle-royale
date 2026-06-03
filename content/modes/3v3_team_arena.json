@@ -1,0 +1,20 @@
+{
+  "id": "3v3_team_arena",
+  "display_name": "3v3 Team Arena",
+  "mode_type": "team_arena",
+  "map_id": "map_sunken_circuit",
+  "team_based": true,
+  "teams": [1, 2],
+  "team_size": 3,
+  "max_participants": 6,
+  "min_humans": 1,
+  "bot_fill": true,
+  "score_limit": 18,
+  "duration_sec": 210,
+  "respawn_sec": 4,
+  "invulnerability_sec": 1.2,
+  "kill_score": 1,
+  "friendly_fire": false,
+  "bot_profile_id": "bot_profile_normal",
+  "friend_team_mode": "together"
+}

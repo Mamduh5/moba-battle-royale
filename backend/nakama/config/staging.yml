@@ -1,0 +1,3 @@
+name: arena-royale-staging
+logger:
+  level: INFO

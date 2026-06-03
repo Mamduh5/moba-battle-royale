@@ -1,0 +1,23 @@
+{
+  "id": "hero_arcanist",
+  "display_name": "Lumen Arcanist",
+  "role": "caster",
+  "description": "A ranged mage with orb shots, a blink, and a decisive meteor strike.",
+  "stats": {
+    "max_health": 930,
+    "move_speed": 176,
+    "radius": 16,
+    "armor": 0.08
+  },
+  "visual": {
+    "body_shape": "orb_staff",
+    "primary_color": "#F2B84B",
+    "accent_color": "#2DF2C9",
+    "ability_color": "#FF704D"
+  },
+  "ability_slots": {
+    "basic_attack": "ability_arcanist_basic",
+    "ability_1": "ability_arcanist_blink",
+    "ultimate": "ability_arcanist_meteor"
+  }
+}

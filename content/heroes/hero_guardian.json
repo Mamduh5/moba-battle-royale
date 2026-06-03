@@ -1,0 +1,23 @@
+{
+  "id": "hero_guardian",
+  "display_name": "Aegis Guardian",
+  "role": "tank",
+  "description": "A sturdy front-line defender with a shield charge and team-saving burst.",
+  "stats": {
+    "max_health": 1260,
+    "move_speed": 156,
+    "radius": 20,
+    "armor": 0.16
+  },
+  "visual": {
+    "body_shape": "shield",
+    "primary_color": "#2D6CDF",
+    "accent_color": "#FFD76A",
+    "ability_color": "#62D0FF"
+  },
+  "ability_slots": {
+    "basic_attack": "ability_guardian_basic",
+    "ability_1": "ability_guardian_charge",
+    "ultimate": "ability_guardian_bulwark"
+  }
+}

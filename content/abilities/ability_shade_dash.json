@@ -1,0 +1,13 @@
+{
+  "id": "ability_shade_dash",
+  "display_name": "Needle Dash",
+  "slot": "ability_1",
+  "icon_symbol": "arrow",
+  "effect_type": "dash_strike",
+  "damage": 96,
+  "cooldown_sec": 5.2,
+  "range": 210,
+  "radius": 38,
+  "dash_distance": 205,
+  "vfx_color": "#5DFFB3"
+}

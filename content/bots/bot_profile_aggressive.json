@@ -1,0 +1,13 @@
+{
+  "id": "bot_profile_aggressive",
+  "display_name": "Striker Bot",
+  "reaction_delay_ticks": 2,
+  "aim_error_degrees": 4.0,
+  "aggression": 0.86,
+  "objective_priority": 0.44,
+  "retreat_health_ratio": 0.16,
+  "skill_usage": 0.88,
+  "dodge_skill": 0.58,
+  "map_awareness": 0.74,
+  "hero_pool": ["hero_shade", "hero_arcanist", "hero_guardian"]
+}

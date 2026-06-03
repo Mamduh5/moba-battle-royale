@@ -1,0 +1,13 @@
+{
+  "id": "bot_profile_normal",
+  "display_name": "Arena Bot",
+  "reaction_delay_ticks": 4,
+  "aim_error_degrees": 7.5,
+  "aggression": 0.62,
+  "objective_priority": 0.52,
+  "retreat_health_ratio": 0.28,
+  "skill_usage": 0.72,
+  "dodge_skill": 0.45,
+  "map_awareness": 0.66,
+  "hero_pool": ["hero_guardian", "hero_shade", "hero_arcanist"]
+}

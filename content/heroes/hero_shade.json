@@ -1,0 +1,23 @@
+{
+  "id": "hero_shade",
+  "display_name": "Vesper Shade",
+  "role": "assassin",
+  "description": "A fast duelist that dashes through targets and finishes weakened enemies.",
+  "stats": {
+    "max_health": 820,
+    "move_speed": 205,
+    "radius": 15,
+    "armor": 0.04
+  },
+  "visual": {
+    "body_shape": "blade",
+    "primary_color": "#8E44AD",
+    "accent_color": "#5DFFB3",
+    "ability_color": "#FF4FA3"
+  },
+  "ability_slots": {
+    "basic_attack": "ability_shade_basic",
+    "ability_1": "ability_shade_dash",
+    "ultimate": "ability_shade_nova"
+  }
+}

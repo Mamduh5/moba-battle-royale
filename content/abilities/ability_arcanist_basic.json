@@ -1,0 +1,14 @@
+{
+  "id": "ability_arcanist_basic",
+  "display_name": "Arc Orb",
+  "slot": "basic_attack",
+  "icon_symbol": "orb",
+  "effect_type": "projectile",
+  "damage": 64,
+  "cooldown_sec": 0.62,
+  "range": 520,
+  "radius": 9,
+  "projectile_speed": 660,
+  "lifetime_sec": 0.9,
+  "vfx_color": "#2DF2C9"
+}

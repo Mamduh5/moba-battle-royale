@@ -1,0 +1,21 @@
+{
+  "id": "25_player_deathmatch",
+  "display_name": "25 Player Deathmatch",
+  "mode_type": "deathmatch",
+  "map_id": "map_sunken_circuit",
+  "team_based": false,
+  "teams": [],
+  "team_size": 0,
+  "max_participants": 25,
+  "min_humans": 1,
+  "bot_fill": true,
+  "score_limit": 15,
+  "duration_sec": 240,
+  "respawn_sec": 3,
+  "invulnerability_sec": 1.0,
+  "kill_score": 1,
+  "self_elimination_score": 0,
+  "friendly_fire": true,
+  "bot_profile_id": "bot_profile_normal",
+  "friend_team_mode": "split"
+}

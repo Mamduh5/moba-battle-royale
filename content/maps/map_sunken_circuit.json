@@ -1,0 +1,59 @@
+{
+  "id": "map_sunken_circuit",
+  "display_name": "Sunken Circuit",
+  "bounds": {
+    "x": -1080,
+    "y": -660,
+    "width": 2160,
+    "height": 1320
+  },
+  "floor_color": "#17323A",
+  "line_color": "#45A6A6",
+  "wall_color": "#244B57",
+  "spawn_color": "#F4D35E",
+  "obstacles": [
+    {"id": "pillar_west", "x": -520, "y": -210, "width": 150, "height": 420},
+    {"id": "pillar_east", "x": 370, "y": -210, "width": 150, "height": 420},
+    {"id": "top_gate", "x": -190, "y": -505, "width": 380, "height": 90},
+    {"id": "bottom_gate", "x": -190, "y": 415, "width": 380, "height": 90},
+    {"id": "center_core", "x": -105, "y": -105, "width": 210, "height": 210}
+  ],
+  "objective_points": [
+    {"id": "center", "x": 0, "y": 0},
+    {"id": "north", "x": 0, "y": -360},
+    {"id": "south", "x": 0, "y": 360}
+  ],
+  "spawn_points": [
+    {"id": "team1_0", "team_id": 1, "x": -860, "y": -280},
+    {"id": "team1_1", "team_id": 1, "x": -890, "y": 0},
+    {"id": "team1_2", "team_id": 1, "x": -860, "y": 280},
+    {"id": "team2_0", "team_id": 2, "x": 860, "y": -280},
+    {"id": "team2_1", "team_id": 2, "x": 890, "y": 0},
+    {"id": "team2_2", "team_id": 2, "x": 860, "y": 280},
+    {"id": "ffa_00", "team_id": 0, "x": -930, "y": -520},
+    {"id": "ffa_01", "team_id": 0, "x": -610, "y": -540},
+    {"id": "ffa_02", "team_id": 0, "x": -260, "y": -570},
+    {"id": "ffa_03", "team_id": 0, "x": 260, "y": -570},
+    {"id": "ffa_04", "team_id": 0, "x": 610, "y": -540},
+    {"id": "ffa_05", "team_id": 0, "x": 930, "y": -520},
+    {"id": "ffa_06", "team_id": 0, "x": -960, "y": -120},
+    {"id": "ffa_07", "team_id": 0, "x": -700, "y": 120},
+    {"id": "ffa_08", "team_id": 0, "x": -330, "y": -260},
+    {"id": "ffa_09", "team_id": 0, "x": 330, "y": -260},
+    {"id": "ffa_10", "team_id": 0, "x": 700, "y": 120},
+    {"id": "ffa_11", "team_id": 0, "x": 960, "y": -120},
+    {"id": "ffa_12", "team_id": 0, "x": -930, "y": 520},
+    {"id": "ffa_13", "team_id": 0, "x": -610, "y": 540},
+    {"id": "ffa_14", "team_id": 0, "x": -260, "y": 570},
+    {"id": "ffa_15", "team_id": 0, "x": 260, "y": 570},
+    {"id": "ffa_16", "team_id": 0, "x": 610, "y": 540},
+    {"id": "ffa_17", "team_id": 0, "x": 930, "y": 520},
+    {"id": "ffa_18", "team_id": 0, "x": -120, "y": -340},
+    {"id": "ffa_19", "team_id": 0, "x": 120, "y": 340},
+    {"id": "ffa_20", "team_id": 0, "x": -700, "y": -420},
+    {"id": "ffa_21", "team_id": 0, "x": 700, "y": -420},
+    {"id": "ffa_22", "team_id": 0, "x": -700, "y": 420},
+    {"id": "ffa_23", "team_id": 0, "x": 700, "y": 420},
+    {"id": "ffa_24", "team_id": 0, "x": 0, "y": 560}
+  ]
+}

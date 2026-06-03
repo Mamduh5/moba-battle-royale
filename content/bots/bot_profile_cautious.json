@@ -1,0 +1,13 @@
+{
+  "id": "bot_profile_cautious",
+  "display_name": "Sentinel Bot",
+  "reaction_delay_ticks": 6,
+  "aim_error_degrees": 10.0,
+  "aggression": 0.45,
+  "objective_priority": 0.78,
+  "retreat_health_ratio": 0.42,
+  "skill_usage": 0.58,
+  "dodge_skill": 0.52,
+  "map_awareness": 0.82,
+  "hero_pool": ["hero_guardian", "hero_arcanist", "hero_shade"]
+}
