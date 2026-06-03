@@ -1,23 +1,26 @@
-# Godot Codex Reference Upgrade v2
+# Canonical Codex Reference Pack
 
-This folder is an implementation-contract overlay for the existing Godot/Codex reference pack.
+This folder is the active implementation contract for Codex work in this repository.
 
-Place this folder inside the project as either:
-
-```text
-<project>/docs/codex_reference_upgrade_v2/
-```
-
-or next to the original reference folder:
+Global entry point:
 
 ```text
-<project>/docs/codex_reference/
-<project>/docs/codex_reference_upgrade_v2/
+docs/CODEX.md
 ```
 
-The original pack explains the system direction. This upgrade removes ambiguity by defining exact paths, class contracts, message payloads, CLI commands, sample content, Nakama runtime contracts, bot APIs, test gates, and the first build tasks.
+Single-prompt challenge entry point:
 
-## Mandatory reading order for Codex
+```text
+docs/godot_codex_reference_upgrade_v2/CODEX_ONE_PROMPT_BUILD.md
+```
+
+The older folder below is deprecated and must not be used as the build contract:
+
+```text
+docs/godot_codex_reference/
+```
+
+## Mandatory reading order for normal Codex work
 
 1. `CODEX_BUILD_CONTRACT.md`
 2. `docs/24_exact_repository_layout.md`
@@ -26,6 +29,8 @@ The original pack explains the system direction. This upgrade removes ambiguity 
 5. `docs/27_network_payload_contracts.md`
 6. `docs/28_nakama_runtime_contract.md`
 7. `docs/30_first_30_codex_tasks.md`
+8. `CODEX_ACCEPTANCE_GATES.md`
+9. `CODEX_FAILURE_RECOVERY.md`
 
 ## Scope
 
