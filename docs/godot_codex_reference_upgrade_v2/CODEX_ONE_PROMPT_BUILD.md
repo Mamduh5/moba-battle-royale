@@ -11,18 +11,23 @@ Read these files before editing:
 1. `docs/CODEX.md`
 2. `docs/godot_codex_reference_upgrade_v2/CODEX_COMPLETE_GAME_CONTRACT.md`
 3. `docs/godot_codex_reference_upgrade_v2/CODEX_BUILD_CONTRACT.md`
-4. `docs/godot_codex_reference_upgrade_v2/docs/24_exact_repository_layout.md`
-5. `docs/godot_codex_reference_upgrade_v2/docs/25_godot_class_contracts.md`
-6. `docs/godot_codex_reference_upgrade_v2/docs/26_cli_command_contract.md`
-7. `docs/godot_codex_reference_upgrade_v2/docs/27_network_payload_contracts.md`
-8. `docs/godot_codex_reference_upgrade_v2/docs/28_nakama_runtime_contract.md`
-9. `docs/godot_codex_reference_upgrade_v2/docs/33_testing_contract.md`
-10. `docs/godot_codex_reference_upgrade_v2/docs/34_bot_contracts.md`
-11. `docs/godot_codex_reference_upgrade_v2/docs/35_scene_ui_contracts.md`
-12. `docs/godot_codex_reference_upgrade_v2/CODEX_ACCEPTANCE_GATES.md`
-13. `docs/godot_codex_reference_upgrade_v2/CODEX_FAILURE_RECOVERY.md`
+4. `docs/godot_codex_reference_upgrade_v2/CODEX_RETRY_DEBUG_LOOP.md`
+5. `docs/godot_codex_reference_upgrade_v2/docs/24_exact_repository_layout.md`
+6. `docs/godot_codex_reference_upgrade_v2/docs/25_godot_class_contracts.md`
+7. `docs/godot_codex_reference_upgrade_v2/docs/26_cli_command_contract.md`
+8. `docs/godot_codex_reference_upgrade_v2/docs/27_network_payload_contracts.md`
+9. `docs/godot_codex_reference_upgrade_v2/docs/28_nakama_runtime_contract.md`
+10. `docs/godot_codex_reference_upgrade_v2/docs/33_testing_contract.md`
+11. `docs/godot_codex_reference_upgrade_v2/docs/34_bot_contracts.md`
+12. `docs/godot_codex_reference_upgrade_v2/docs/35_scene_ui_contracts.md`
+13. `docs/godot_codex_reference_upgrade_v2/CODEX_ACCEPTANCE_GATES.md`
+14. `docs/godot_codex_reference_upgrade_v2/CODEX_FAILURE_RECOVERY.md`
 
 Use `docs/godot_codex_reference_upgrade_v2/docs/30_first_30_codex_tasks.md` as the build order, but apply the complete-game scope in this file.
+
+## Tool and run policy
+
+Codex is expected to run the work, not only write files. If normal development tools are missing, attempt to bootstrap them through the available environment or report the exact blocker. Do not stop on the first failed command. Follow `CODEX_RETRY_DEBUG_LOOP.md`.
 
 ## Build target
 
@@ -138,7 +143,7 @@ Work in this order. Do not skip ahead to visual polish before gameplay is comple
 21. Add local backend adapter/Nakama-compatible boundary.
 22. Add tests or command checks for implemented subsystems.
 23. Run all available validation commands.
-24. Report exact files changed, commands run, failures, and limitations.
+24. Report exact files changed, commands run, failures, retry log, and limitations.
 
 ## Acceptance gates
 
@@ -211,6 +216,7 @@ The final response must include:
 
 - files changed,
 - commands run,
+- failed commands and fixes attempted,
 - commands unavailable because of missing Godot/Nakama/tooling,
 - validation results,
 - known limitations,
@@ -257,6 +263,9 @@ Files changed:
 
 Commands run:
 - ...
+
+Retry log:
+- command -> failure -> fix -> rerun result
 
 Validation:
 - ...
