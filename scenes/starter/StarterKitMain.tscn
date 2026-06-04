@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://moba_survival_starter_main"]
+
+[ext_resource type="Script" path="res://src/starter/StarterKitMain.gd" id="1_starter"]
+
+[node name="StarterKitMain" type="Node2D"]
+script = ExtResource("1_starter")
+

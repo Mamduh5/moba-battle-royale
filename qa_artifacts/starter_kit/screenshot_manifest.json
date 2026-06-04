@@ -1,0 +1,44 @@
+{
+	"captures": [
+		{
+			"path": "res://qa_artifacts/starter_kit/1280x720/main_menu.png",
+			"resolution": "1280x720",
+			"screen": "main_menu"
+		},
+		{
+			"path": "res://qa_artifacts/starter_kit/1280x720/mode_select.png",
+			"resolution": "1280x720",
+			"screen": "mode_select"
+		},
+		{
+			"path": "res://qa_artifacts/starter_kit/1280x720/match.png",
+			"resolution": "1280x720",
+			"screen": "match"
+		},
+		{
+			"path": "res://qa_artifacts/starter_kit/1280x720/result.png",
+			"resolution": "1280x720",
+			"screen": "result"
+		},
+		{
+			"path": "res://qa_artifacts/starter_kit/1920x1080/main_menu.png",
+			"resolution": "1920x1080",
+			"screen": "main_menu"
+		},
+		{
+			"path": "res://qa_artifacts/starter_kit/1920x1080/mode_select.png",
+			"resolution": "1920x1080",
+			"screen": "mode_select"
+		},
+		{
+			"path": "res://qa_artifacts/starter_kit/1920x1080/match.png",
+			"resolution": "1920x1080",
+			"screen": "match"
+		},
+		{
+			"path": "res://qa_artifacts/starter_kit/1920x1080/result.png",
+			"resolution": "1920x1080",
+			"screen": "result"
+		}
+	]
+}
