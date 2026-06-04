@@ -1,0 +1,13 @@
+{
+  "id": "ability_guardian_slam",
+  "display_name": "Starbreaker",
+  "slot": "ultimate",
+  "family": "area",
+  "cast_kind": "area",
+  "damage": 180,
+  "range": 210,
+  "radius": 116,
+  "cooldown_sec": 18.0,
+  "vfx_color": "#FFD166",
+  "icon": "burst"
+}

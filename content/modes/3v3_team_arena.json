@@ -1,0 +1,17 @@
+{
+  "id": "3v3_team_arena",
+  "display_name": "3v3 Team Arena",
+  "mode_type": "team_arena",
+  "map_id": "map_skyline_ring",
+  "max_participants": 6,
+  "teams_enabled": true,
+  "team_count": 2,
+  "team_size": 3,
+  "bot_fill": true,
+  "score_limit": 12,
+  "duration_sec": 210,
+  "respawn_delay_sec": 4,
+  "invulnerability_sec": 1.1,
+  "friendly_fire": false,
+  "score": {"kill": 1, "self_elimination": 0}
+}

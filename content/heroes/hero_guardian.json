@@ -1,0 +1,15 @@
+{
+  "id": "hero_guardian",
+  "display_name": "Iron Guardian",
+  "role": "tank",
+  "max_health": 1120,
+  "move_speed": 250,
+  "primary_color": "#30D1C8",
+  "accent_color": "#F8D85D",
+  "silhouette": "shield",
+  "abilities": [
+    {"slot": "basic_attack", "ability_id": "ability_guardian_basic"},
+    {"slot": "ability_1", "ability_id": "ability_guardian_barrier"},
+    {"slot": "ultimate", "ability_id": "ability_guardian_slam"}
+  ]
+}

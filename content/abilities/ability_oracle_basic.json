@@ -1,0 +1,13 @@
+{
+  "id": "ability_oracle_basic",
+  "display_name": "Arc Orb",
+  "slot": "basic_attack",
+  "family": "orb",
+  "cast_kind": "instant",
+  "damage": 52,
+  "range": 315,
+  "radius": 36,
+  "cooldown_sec": 0.62,
+  "vfx_color": "#65F2FF",
+  "icon": "orb"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "hero_oracle",
+  "display_name": "Arc Oracle",
+  "role": "caster",
+  "max_health": 840,
+  "move_speed": 285,
+  "primary_color": "#7C6DFF",
+  "accent_color": "#65F2FF",
+  "silhouette": "orb_staff",
+  "abilities": [
+    {"slot": "basic_attack", "ability_id": "ability_oracle_basic"},
+    {"slot": "ability_1", "ability_id": "ability_oracle_phase"},
+    {"slot": "ultimate", "ability_id": "ability_oracle_nova"}
+  ]
+}

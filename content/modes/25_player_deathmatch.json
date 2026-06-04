@@ -1,0 +1,17 @@
+{
+  "id": "25_player_deathmatch",
+  "display_name": "25 Player Deathmatch",
+  "mode_type": "deathmatch",
+  "map_id": "map_skyline_ring",
+  "max_participants": 25,
+  "teams_enabled": false,
+  "team_count": 0,
+  "team_size": 0,
+  "bot_fill": true,
+  "score_limit": 18,
+  "duration_sec": 240,
+  "respawn_delay_sec": 3,
+  "invulnerability_sec": 0.8,
+  "friendly_fire": true,
+  "score": {"kill": 1, "self_elimination": 0}
+}

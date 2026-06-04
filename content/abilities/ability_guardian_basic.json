@@ -1,0 +1,13 @@
+{
+  "id": "ability_guardian_basic",
+  "display_name": "Shield Bolt",
+  "slot": "basic_attack",
+  "family": "bolt",
+  "cast_kind": "instant",
+  "damage": 64,
+  "range": 255,
+  "radius": 34,
+  "cooldown_sec": 0.55,
+  "vfx_color": "#F8D85D",
+  "icon": "bolt"
+}

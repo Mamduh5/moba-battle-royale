@@ -1,0 +1,13 @@
+{
+  "id": "bot_pressure",
+  "display_name": "Pressure Bot",
+  "reaction_delay_ticks": 4,
+  "aim_error_degrees": 3.5,
+  "aggression": 0.82,
+  "objective_priority": 0.35,
+  "retreat_health_ratio": 0.18,
+  "skill_usage": 0.86,
+  "dodge_skill": 0.62,
+  "map_awareness": 0.84,
+  "hero_rotation": ["hero_raptor", "hero_oracle", "hero_guardian"]
+}

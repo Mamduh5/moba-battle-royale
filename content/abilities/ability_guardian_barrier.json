@@ -1,0 +1,14 @@
+{
+  "id": "ability_guardian_barrier",
+  "display_name": "Aegis Rush",
+  "slot": "ability_1",
+  "family": "barrier",
+  "cast_kind": "shield_dash",
+  "damage": 42,
+  "range": 170,
+  "radius": 62,
+  "shield": 210,
+  "cooldown_sec": 6.0,
+  "vfx_color": "#30D1C8",
+  "icon": "shield"
+}

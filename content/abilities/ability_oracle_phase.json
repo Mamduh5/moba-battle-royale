@@ -1,0 +1,13 @@
+{
+  "id": "ability_oracle_phase",
+  "display_name": "Phase Step",
+  "slot": "ability_1",
+  "family": "phase",
+  "cast_kind": "blink",
+  "damage": 0,
+  "range": 210,
+  "radius": 76,
+  "cooldown_sec": 5.5,
+  "vfx_color": "#B4A7FF",
+  "icon": "arrow"
+}

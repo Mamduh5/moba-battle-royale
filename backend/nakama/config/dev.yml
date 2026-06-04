@@ -1,0 +1,5 @@
+name: arena-dev
+logger:
+  level: INFO
+session:
+  token_expiry_sec: 7200

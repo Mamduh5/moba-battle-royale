@@ -1,0 +1,15 @@
+{
+  "id": "hero_raptor",
+  "display_name": "Neon Raptor",
+  "role": "assassin",
+  "max_health": 760,
+  "move_speed": 335,
+  "primary_color": "#FF4D8D",
+  "accent_color": "#72FF7D",
+  "silhouette": "blade",
+  "abilities": [
+    {"slot": "basic_attack", "ability_id": "ability_raptor_basic"},
+    {"slot": "ability_1", "ability_id": "ability_raptor_dash"},
+    {"slot": "ultimate", "ability_id": "ability_raptor_execute"}
+  ]
+}

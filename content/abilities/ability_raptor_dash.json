@@ -1,0 +1,13 @@
+{
+  "id": "ability_raptor_dash",
+  "display_name": "Blink Cut",
+  "slot": "ability_1",
+  "family": "dash",
+  "cast_kind": "dash",
+  "damage": 92,
+  "range": 235,
+  "radius": 58,
+  "cooldown_sec": 5.0,
+  "vfx_color": "#72FF7D",
+  "icon": "dash"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "ability_raptor_basic",
+  "display_name": "Twin Slash",
+  "slot": "basic_attack",
+  "family": "slash",
+  "cast_kind": "instant",
+  "damage": 58,
+  "range": 190,
+  "radius": 42,
+  "cooldown_sec": 0.42,
+  "vfx_color": "#FF4D8D",
+  "icon": "slash"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "ability_raptor_execute",
+  "display_name": "Final Angle",
+  "slot": "ultimate",
+  "family": "execute",
+  "cast_kind": "execute",
+  "damage": 210,
+  "range": 230,
+  "radius": 52,
+  "cooldown_sec": 16.0,
+  "execute_bonus_threshold": 0.36,
+  "vfx_color": "#FFB3C7",
+  "icon": "knife"
+}

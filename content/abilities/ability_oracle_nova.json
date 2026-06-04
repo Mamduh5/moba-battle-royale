@@ -1,0 +1,13 @@
+{
+  "id": "ability_oracle_nova",
+  "display_name": "Aurora Nova",
+  "slot": "ultimate",
+  "family": "nova",
+  "cast_kind": "area",
+  "damage": 168,
+  "range": 280,
+  "radius": 132,
+  "cooldown_sec": 17.0,
+  "vfx_color": "#8AF7FF",
+  "icon": "star"
+}
